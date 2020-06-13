@@ -5,10 +5,10 @@ SWEP.HoldType = "pistol"
 if CLIENT then
 	SWEP.PrintName = "Deagle"
 	SWEP.Slot = 1
-	
+
 	SWEP.ViewModelFlip = false
 	SWEP.ViewModelFOV = 54
-	
+
 	SWEP.Icon = "vgui/ttt/icon_deagle"
 end
 

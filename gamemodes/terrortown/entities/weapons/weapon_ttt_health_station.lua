@@ -5,15 +5,15 @@ SWEP.HoldType = "normal"
 if CLIENT then
 	SWEP.PrintName = "hstation_name"
 	SWEP.Slot = 6
-	
+
 	SWEP.ViewModelFOV = 10
 	SWEP.DrawCrosshair = false
-	
+
 	SWEP.EquipMenuData = {
 		type = "item_weapon",
 		desc = "hstation_desc"
 	};
-	
+
 	SWEP.Icon = "vgui/ttt/icon_health"
 end
 
@@ -64,33 +64,33 @@ function SWEP:HealthDrop()
 	if SERVER then
 		local ply = self:GetOwner()
 		if not IsValid(ply) then return end
-		
+
 		if self.Planted then return end
-		
+
 		local vsrc = ply:GetShootPos()
 		local vang = ply:GetAimVector()
 		local vvel = ply:GetVelocity()
-		
+
 		local vthrow = vvel + vang * 200
-		
+
 		local health = ents.Create("ttt_health_station")
 		if IsValid(health) then
 			health:SetPos(vsrc + vang * 10)
 			health:Spawn()
-			
+
 			health:SetPlacer(ply)
-			
+
 			health:PhysWake()
 			local phys = health:GetPhysicsObject()
 			if IsValid(phys) then
 				phys:SetVelocity(vthrow)
 			end
 			self:Remove()
-			
+
 			self.Planted = true
 		end
 	end
-	
+
 	self:EmitSound(throwsound)
 end
 
@@ -107,7 +107,7 @@ end
 if CLIENT then
 	function SWEP:Initialize()
 		self:AddHUDHelp("hstation_help", nil, true)
-		
+
 		return self.BaseClass.Initialize(self)
 	end
 end

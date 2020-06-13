@@ -11,7 +11,7 @@ local Consumption = CreateConVar("ttt_sprint_consume", "0.2", FCVAR_SERVER_CAN_E
 -- Set the Speed
 net.Receive("SprintSpeedset", function(len, ply)
 	local mul = net.ReadFloat()
-	
+
 	if mul ~= 0 then
 		ply.mult = 1 + mul
 	else

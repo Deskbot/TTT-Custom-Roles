@@ -5,10 +5,10 @@ SWEP.HoldType = "grenade"
 if CLIENT then
 	SWEP.PrintName = "Discombobulator"
 	SWEP.Slot = 3
-	
+
 	SWEP.ViewModelFlip = false
 	SWEP.ViewModelFOV = 54
-	
+
 	SWEP.Icon = "vgui/ttt/icon_confgrenade"
 	SWEP.IconLetter = "h"
 end

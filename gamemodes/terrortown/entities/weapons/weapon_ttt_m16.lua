@@ -5,10 +5,10 @@ SWEP.HoldType = "ar2"
 if CLIENT then
 	SWEP.PrintName = "M16"
 	SWEP.Slot = 2
-	
+
 	SWEP.ViewModelFlip = false
 	SWEP.ViewModelFOV = 64
-	
+
 	SWEP.Icon = "vgui/ttt/icon_m16"
 	SWEP.IconLetter = "w"
 end
@@ -55,13 +55,13 @@ end
 function SWEP:SecondaryAttack()
 	if not self.IronSightsPos then return end
 	if self:GetNextSecondaryFire() > CurTime() then return end
-	
+
 	local bIronsights = not self:GetIronsights()
-	
+
 	self:SetIronsights(bIronsights)
-	
+
 	self:SetZoom(bIronsights)
-	
+
 	self:SetNextSecondaryFire(CurTime() + 0.3)
 end
 

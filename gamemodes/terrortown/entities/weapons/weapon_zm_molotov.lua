@@ -5,10 +5,10 @@ SWEP.HoldType = "grenade"
 if CLIENT then
 	SWEP.PrintName = "grenade_fire"
 	SWEP.Slot = 3
-	
+
 	SWEP.ViewModelFlip = false
 	SWEP.ViewModelFOV = 54
-	
+
 	SWEP.Icon = "vgui/ttt/icon_firegrenade"
 	SWEP.IconLetter = "P"
 end

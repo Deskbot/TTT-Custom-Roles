@@ -9,33 +9,33 @@ if SERVER then
 	util.AddNetworkString("DrawHitMarker")
 	util.AddNetworkString("CreateBlood")
 	util.AddNetworkString("OpenMixer")
-	
+
 	hook.Add("EntityTakeDamage", "HitmarkerDetector", function(ent, dmginfo)
 		local att = dmginfo:GetAttacker()
 		local dmg = dmginfo:GetDamage()
 		local pos = dmginfo:GetDamagePosition()
-		
+
 		if (IsValid(att) and att:IsPlayer() and att ~= ent) then
 			if (ent:IsPlayer() or ent:IsNPC()) then -- Only players and NPCs show hitmarkers
 				net.Start("DrawHitMarker")
 				net.WriteBool(ent:GetNWBool("LastHitCrit"))
 				net.Send(att) -- Send the message to the attacker
-				
+
 				net.Start("CreateBlood")
 				net.WriteVector(pos)
 				net.Broadcast()
 			end
 		end
 	end)
-	
+
 	hook.Add("ScalePlayerDamage", "HitmarkerPlayerCritDetector", function(ply, hitgroup, dmginfo)
 		ply:SetNWBool("LastHitCrit", hitgroup == HITGROUP_HEAD)
 	end)
-	
+
 	hook.Add("ScaleNPCDamage", "HitmarkerPlayerCritDetector", function(npc, hitgroup, dmginfo)
 		npc:SetNWBool("LastHitCrit", hitgroup == HITGROUP_HEAD)
 	end)
-	
+
 	hook.Add("PlayerSay", "ColorMixerOpen", function(ply, text, public)
 		local text = string.lower(text)
 		if (string.sub(text, 1, 8) == "!hmcolor") then
@@ -58,11 +58,11 @@ if CLIENT then
 	local LastHitCrit = false
 	local CanPlayS = true
 	local alpha = 0
-	
+
 	local function GrabColor() -- Used for retrieving the console color
 		local coltable = string.Explode(",", hm_color:GetString())
 		local newcol = {}
-		
+
 		for k, v in pairs(coltable) do
 			v = tonumber(v)
 			if v == nil then -- Fixes missing values
@@ -72,11 +72,11 @@ if CLIENT then
 		newcol[1], newcol[2], newcol[3] = coltable[1] or 0, coltable[2] or 0, coltable[3] or 0 -- Fixes missing keys
 		return Color(newcol[1], newcol[2], newcol[3]) -- Returns the finished color
 	end
-	
+
 	local function GrabCritColor() -- Used for retrieving the console color
 		local coltable = string.Explode(",", hm_critcolor:GetString())
 		local newcol = {}
-		
+
 		for k, v in pairs(coltable) do
 			v = tonumber(v)
 			if v == nil then -- Fixes missing values
@@ -86,7 +86,7 @@ if CLIENT then
 		newcol[1], newcol[2], newcol[3] = coltable[1] or 0, coltable[2] or 0, coltable[3] or 0 -- Fixes missing keys
 		return Color(newcol[1], newcol[2], newcol[3]) -- Returns the finished color
 	end
-	
+
 	net.Receive("OpenMixer", function(len, ply) -- Receive the server message
 		-- Creating the color mixer panel
 		local Frame = vgui.Create("DFrame")
@@ -94,14 +94,14 @@ if CLIENT then
 		Frame:SetSize(300, 400)
 		Frame:Center()
 		Frame:MakePopup()
-		
+
 		local colMix = vgui.Create("DColorMixer", Frame)
 		colMix:Dock(TOP)
 		colMix:SetPalette(true)
 		colMix:SetAlphaBar(false)
 		colMix:SetWangs(false)
 		colMix:SetColor(GrabColor()) -- Sets the default color to your current one
-		
+
 		local Butt = vgui.Create("DButton", Frame)
 		Butt:SetText("Set Color")
 		Butt:SetSize(150, 70)
@@ -112,7 +112,7 @@ if CLIENT then
 			RunConsoleCommand("hm_hitmarkercolor", colstring)
 		end
 	end)
-	
+
 	net.Receive("DrawHitMarker", function(len, ply)
 		DrawHitM = true
 		CanPlayS = true
@@ -123,7 +123,7 @@ if CLIENT then
 		end
 		alpha = 255
 	end)
-	
+
 	net.Receive("CreateBlood", function()
 		local pos = net.ReadVector()
 		local effect = EffectData()
@@ -131,20 +131,20 @@ if CLIENT then
 		effect:SetScale(1)
 		util.Effect("bloodimpact", effect)
 	end)
-	
+
 	hook.Add("HUDPaint", "HitmarkerDrawer", function()
 		if hm_toggle:GetBool() == false then return end -- Enables/Disables the hitmarkers
 		if alpha == 0 then DrawHitM = false CanPlayS = true end -- Removes them after they decay
-		
+
 		if DrawHitM == true then
 			if CanPlayS and hm_sound:GetBool() == true then
 				surface.PlaySound("hitmarkers/mlghit.wav")
 				CanPlayS = false
 			end
-			
+
 			local x = ScrW() / 2
 			local y = ScrH() / 2
-			
+
 			alpha = math.Approach(alpha, 0, 5)
 			local col = GrabColor()
 			if LastHitCrit and hm_crit:GetBool() then
@@ -152,7 +152,7 @@ if CLIENT then
 			end
 			col.a = alpha
 			surface.SetDrawColor(col)
-			
+
 			local sel = string.lower(hm_type:GetString())
 			-- The drawing part of the hitmarkers and the various types you can choose
 			if sel == "lines" then

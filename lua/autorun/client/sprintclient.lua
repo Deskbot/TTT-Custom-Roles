@@ -23,7 +23,7 @@ local ply = LocalPlayer()
 -- Receive ConVars (SERVER)
 net.Receive("SprintGetConVars", function()
 	local Table = net.ReadTable()
-	
+
 	Multiplier = Table[1]
 	Crosshair = Table[2]
 	RegenerateI = Table[3]
@@ -44,31 +44,31 @@ ConVars()
 -- Change the Speed
 local function SpeedChange(Bool)
 	net.Start("SprintSpeedset")
-	
+
 	if Bool then
 		net.WriteFloat(math.min(math.max(Multiplier, 0.1), 2))
-		
+
 		ply.mult = 1 + math.min(math.max(Multiplier, 0.1), 2)
 	else
 		net.WriteFloat(0)
-		
+
 		ply.mult = nil
 	end
-	
+
 	net.SendToServer()
-	
+
 	if Crosshair then -- Enlarge Crosshair
 		if Bool then
 			local tmp = GetConVar("ttt_crosshair_size")
-			
+
 			CrosshairSize = tmp and tmp:GetString() or 1
-			
+
 			RunConsoleCommand("ttt_crosshair_size", "2")
 		else
 			if CrosshairSize == "0" then
 				CrosshairSize = CrosshairDebugSize:GetFloat()
 			end
-			
+
 			RunConsoleCommand("ttt_crosshair_size", CrosshairSize)
 		end
 	end
@@ -85,7 +85,7 @@ function SprintKey()
 	elseif ActivateKey:GetFloat() == 3 then
 		return input.IsKeyDown(CustomActivateKey:GetFloat())
 	end
-	
+
 	return false
 end
 
@@ -94,17 +94,17 @@ local function SprintFunction()
 	if realProzent > 0 then
 		if not sprinting then
 			SpeedChange(true)
-			
+
 			sprinting = true
 			TimerCon = CurTime()
 		end
-		
+
 		realProzent = realProzent - (CurTime() - TimerCon) * (math.min(math.max(Consumption, 0.1), 5) * 250)
 		TimerCon = CurTime()
 	else
 		if sprinting then
 			SpeedChange(false)
-			
+
 			sprinting = false
 		end
 	end
@@ -114,27 +114,27 @@ end
 hook.Add("TTTPrepareRound", "TTTSprint4TTTPrepareRound", function()
 	-- reset every round
 	realProzent = 100
-	
+
 	ConVars()
-	
+
 	-- listen for activation
 	hook.Add("Think", "TTTSprint4Think", function()
 		local client = LocalPlayer()
-		
+
 		if client:KeyReleased(IN_FORWARD) and DoubleTapEnabled:GetBool() then
 			-- Double tap
 			lastReleased = CurTime()
 		end
-		
+
 		if DoubleTapEnabled:GetBool() and client:KeyDown(IN_FORWARD) and (lastReleased + math.min(math.max(DoubleTapTime:GetFloat(), 0.001), 1) >= CurTime() or DoubleTapActivated) then
 			SprintFunction()
-			
+
 			DoubleTapActivated = true
 			TimerReg = CurTime()
 		elseif client:KeyDown(IN_FORWARD) and SprintKey() then
 			-- forward + selected key
 			SprintFunction()
-			
+
 			DoubleTapActivated = false
 			TimerReg = CurTime()
 		else
@@ -144,7 +144,7 @@ hook.Add("TTTPrepareRound", "TTTSprint4TTTPrepareRound", function()
 				DoubleTapActivated = false
 				TimerReg = CurTime()
 			end
-			
+
 			if GetRoundState() ~= ROUND_WAIT then
 				if IsValid(client) and client:IsPlayer() and client:GetTraitor() or client:GetAssassin() or client:GetHypnotist() or client:GetVampire() or client:GetZombie() or client:GetKiller() then
 					realProzent = realProzent + (CurTime() - TimerReg) * (math.min(math.max(RegenerateT, 0.01), 2) * 250)
@@ -152,11 +152,11 @@ hook.Add("TTTPrepareRound", "TTTSprint4TTTPrepareRound", function()
 					realProzent = realProzent + (CurTime() - TimerReg) * (math.min(math.max(RegenerateI, 0.01), 2) * 250)
 				end
 			end
-			
+
 			TimerReg = CurTime()
 			DoubleTapActivated = false
 		end
-		
+
 		if realProzent < 0 then -- prevent bugs
 			realProzent = 0
 			SpeedChange(false)

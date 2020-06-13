@@ -13,7 +13,7 @@
 --   table.insert(EquipmentItems[ROLE_DETECTIVE], GetEquipmentItem(ROLE_TRAITOR, EQUIP_ARMOR))
 
 -- Special equipment bitflags. Every unique piece of equipment needs its own
--- id. 
+-- id.
 --
 -- Use the GenerateNewEquipmentID function (see below) to get a unique ID for
 -- your equipment. This is guaranteed not to clash with other addons (as long
@@ -47,7 +47,7 @@ EquipmentItems = {
 			name = "item_armor",
 			desc = "item_armor_desc"
 		},
-		
+
 		-- radar
 		{
 			id = EQUIP_RADAR,
@@ -56,12 +56,12 @@ EquipmentItems = {
 			name = "item_radar",
 			desc = "item_radar_desc"
 		}
-		
+
 		-- The default TTT equipment uses the language system to allow
 		-- translation. Below is an example of how the type, name and desc fields
 		-- would look with explicit non-localized text (which is probably what you
 		-- want when modding).
-		
+
 		--      {  id       = EQUIP_ARMOR,
 		--         loadout  = true, -- default equipment for detectives
 		--         type     = "Passive effect item",
@@ -70,7 +70,7 @@ EquipmentItems = {
 		--         desc     = "Reduces bullet damage by 30% when\nyou get hit."
 		--      },
 	};
-	
+
 	[ROLE_MERCENARY] = {
 		-- body armor
 		{
@@ -80,7 +80,7 @@ EquipmentItems = {
 			name = "item_armor",
 			desc = "item_armor_desc"
 		},
-		
+
 		-- radar
 		{
 			id = EQUIP_RADAR,
@@ -90,7 +90,7 @@ EquipmentItems = {
 			desc = "item_radar_desc"
 		}
 	};
-	
+
 	[ROLE_HYPNOTIST] = {
 		-- body armor
 		{
@@ -100,7 +100,7 @@ EquipmentItems = {
 			name = "item_armor",
 			desc = "item_armor_desc"
 		},
-		
+
 		-- radar
 		{
 			id = EQUIP_RADAR,
@@ -110,7 +110,7 @@ EquipmentItems = {
 			desc = "item_radar_desc"
 		}
 	};
-	
+
 	[ROLE_VAMPIRE] = {
 		-- body armor
 		{
@@ -120,7 +120,7 @@ EquipmentItems = {
 			name = "item_armor",
 			desc = "item_armor_desc"
 		},
-		
+
 		-- radar
 		{
 			id = EQUIP_RADAR,
@@ -130,7 +130,7 @@ EquipmentItems = {
 			desc = "item_radar_desc"
 		}
 	};
-	
+
 	[ROLE_ASSASSIN] = {
 		-- body armor
 		{
@@ -140,7 +140,7 @@ EquipmentItems = {
 			name = "item_armor",
 			desc = "item_armor_desc"
 		},
-		
+
 		-- radar
 		{
 			id = EQUIP_RADAR,
@@ -150,7 +150,7 @@ EquipmentItems = {
 			desc = "item_radar_desc"
 		}
 	};
-	
+
 	[ROLE_KILLER] = {
 		-- body armor
 		{
@@ -160,7 +160,7 @@ EquipmentItems = {
 			name = "item_armor",
 			desc = "item_armor_desc"
 		},
-		
+
 		-- radar
 		{
 			id = EQUIP_RADAR,
@@ -170,7 +170,7 @@ EquipmentItems = {
 			desc = "item_radar_desc"
 		}
 	};
-	
+
 	[ROLE_ZOMBIE] = {
 		-- body armor
 		{
@@ -180,7 +180,7 @@ EquipmentItems = {
 			name = "item_armor",
 			desc = "item_armor_desc"
 		},
-		
+
 		-- radar
 		{
 			id = EQUIP_RADAR,
@@ -189,7 +189,7 @@ EquipmentItems = {
 			name = "item_radar",
 			desc = "item_radar_desc"
 		},
-		
+
 		-- zombie speed
 		{
 			id = EQUIP_SPEED,
@@ -198,7 +198,7 @@ EquipmentItems = {
 			name = "item_speed",
 			desc = "item_speed_desc"
 		},
-		
+
 		-- passive regen
 		{
 			id = EQUIP_REGEN,
@@ -208,7 +208,7 @@ EquipmentItems = {
 			desc = "item_regen_desc"
 		}
 	};
-	
+
 	[ROLE_TRAITOR] = {
 		-- body armor
 		{
@@ -218,7 +218,7 @@ EquipmentItems = {
 			name = "item_armor",
 			desc = "item_armor_desc"
 		},
-		
+
 		-- radar
 		{
 			id = EQUIP_RADAR,
@@ -235,7 +235,7 @@ EquipmentItems = {
 function GetEquipmentItem(role, id)
 	local tbl = EquipmentItems[role]
 	if not tbl then return end
-	
+
 	for k, v in pairs(tbl) do
 		if v and v.id == id then
 			return v

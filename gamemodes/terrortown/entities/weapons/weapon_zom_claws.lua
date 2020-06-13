@@ -5,7 +5,7 @@ SWEP.HoldType = "knife"
 if CLIENT then
 	SWEP.PrintName = "Claws"
 	SWEP.Slot = 8
-	
+
 	SWEP.ViewModelFlip = false
 	SWEP.ViewModelFOV = 54
 else
@@ -37,21 +37,21 @@ local sound_single = Sound("Weapon_Crowbar.Single")
 
 function SWEP:PrimaryAttack()
 	self.Weapon:SetNextPrimaryFire(CurTime() + self.Primary.Delay)
-	
+
 	if not IsValid(self:GetOwner()) then return end
-	
+
 	if self:GetOwner().LagCompensation then -- for some reason not always true
 		self:GetOwner():LagCompensation(true)
 	end
-	
+
 	local spos = self:GetOwner():GetShootPos()
 	local sdest = spos + (self:GetOwner():GetAimVector() * 120)
-	
+
 	tr_main = util.TraceLine({ start = spos, endpos = sdest, filter = self:GetOwner(), mask = MASK_SHOT_HULL })
 	local hitEnt = tr_main.Entity
-	
+
 	self.Weapon:EmitSound(sound_single)
-	
+
 	if IsValid(hitEnt) or tr_main.HitWorld then
 		if not (CLIENT and (not IsFirstTimePredicted())) then
 			local edata = EffectData()
@@ -61,7 +61,7 @@ function SWEP:PrimaryAttack()
 			edata:SetSurfaceProp(tr_main.SurfaceProps)
 			edata:SetHitBox(tr_main.HitBox)
 			edata:SetEntity(hitEnt)
-			
+
 			if hitEnt:IsPlayer() or hitEnt:GetClass() == "prop_ragdoll" then
 				util.Effect("BloodImpact", edata)
 				self:GetOwner():LagCompensation(false)
@@ -72,10 +72,10 @@ function SWEP:PrimaryAttack()
 		end
 	end
 	self.Weapon:SendWeaponAnim(ACT_VM_MISSCENTER)
-	
+
 	if not CLIENT then
 		self:GetOwner():SetAnimation(PLAYER_ATTACK1)
-		
+
 		if hitEnt and hitEnt:IsValid() then
 			if hitEnt:IsPlayer() and not hitEnt:IsZombie() then
 				if hitEnt:Health() <= 50 and not hitEnt:IsJester() and not hitEnt:IsSwapper() then
@@ -83,11 +83,11 @@ function SWEP:PrimaryAttack()
 					LANG.Msg(self:GetOwner(), "credit_zom", { num = 1 })
 					hitEnt:PrintMessage(HUD_PRINTCENTER, "You will respawn as a zombie in 3 seconds.")
 					hitEnt:SetPData("IsZombifying", 1)
-					
+
 					net.Start("TTT_Zombified")
 					net.WriteString(hitEnt:Nick())
 					net.Broadcast()
-					
+
 					timer.Simple(3, function()
 						local body = hitEnt.server_ragdoll or hitEnt:GetRagdollEntity()
 						hitEnt:SpawnForRound(true)
@@ -115,12 +115,12 @@ function SWEP:PrimaryAttack()
 				dmg:SetDamageForce(self:GetOwner():GetAimVector() * 5)
 				dmg:SetDamagePosition(self:GetOwner():GetPos())
 				dmg:SetDamageType(DMG_SLASH)
-				
+
 				hitEnt:DispatchTraceAttack(dmg, spos + (self:GetOwner():GetAimVector() * 3), sdest)
 			end
 		end
 	end
-	
+
 	if self:GetOwner().LagCompensation then
 		self:GetOwner():LagCompensation(false)
 	end
@@ -151,11 +151,11 @@ end
 function FindRespawnLocation(pos)
 	local midsize = Vector(33, 33, 74)
 	local tstart = pos + Vector(0, 0, midsize.z / 2)
-	
+
 	for i = 1, #offsets do
 		local o = offsets[i]
 		local v = tstart + o * midsize * 1.5
-		
+
 		local t = {
 			start = v,
 			endpos = v,
@@ -163,12 +163,12 @@ function FindRespawnLocation(pos)
 			mins = midsize / -2,
 			maxs = midsize / 2
 		}
-		
+
 		local tr = util.TraceHull(t)
-		
+
 		if not tr.Hit then return (v - Vector(0, 0, midsize.z / 2)) end
 	end
-	
+
 	return false
 end
 

@@ -5,7 +5,7 @@ SWEP.HoldType = "normal"
 if CLIENT then
 	SWEP.PrintName = "unarmed_name"
 	SWEP.Slot = 5
-	
+
 	SWEP.ViewModelFOV = 10
 end
 
@@ -56,9 +56,9 @@ function SWEP:Deploy()
 	if SERVER and IsValid(self:GetOwner()) then
 		self:GetOwner():DrawViewModel(false)
 	end
-	
+
 	self:DrawShadow(false)
-	
+
 	return true
 end
 

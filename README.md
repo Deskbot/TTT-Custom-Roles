@@ -6,6 +6,7 @@ Adds a bunch of new roles to the Garry's Mod TTT gamemode, as seen on the Yogsca
 
 ### Special Thanks:
 
+- [NoxxFlame](https://github.com/NoxxFlame) for developing the [original TTT-Custom-Roles mod](https://github.com/NoxxFlame/TTT-Custom-Roles).
 - [Jenssons](https://steamcommunity.com/profiles/76561198044525091) for the 'Town of Terror' mod which was the inspiration for this mod.
 - [Bodysnatch Thunderpants](https://steamcommunity.com/id/gamerh) for the 'Better Equipment Menu' mod.
 - [Milky](https://steamcommunity.com/profiles/76561198094798859) for the code used to create the pile of bones after the Vampire eats a body taken from the 'TTT Traitor Weapon Evolve' mod.

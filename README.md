@@ -36,7 +36,7 @@ Goal: Kill all members of the traitor team
      - Reveals the role, what killed them, who they last saw and other useful information to all players
      - If other players try to search a body it will instead alert Detectives of the body’s location (Optional)
 - Has access to a shop
-     - Spawns with two credits
+     - Spawns with one credit
      - Gains a credit whenever a member of the traitor team is killed
 
 **Glitch**

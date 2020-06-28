@@ -5,6 +5,7 @@ Adds a bunch of new roles to the Garry's Mod TTT game mode.
 
 ## Differences to the [original by NoxxFlame](https://github.com/NoxxFlame/TTT-Custom-Roles).
 
+- Adds option `ttt_independent_warning` (Default: 1). At the start of the round, if there is a Jester, Swapper, or Killer, all players are warned that there is an "independent player".
 
 ### Special Thanks:
 
@@ -193,4 +194,5 @@ ttt_zombie_pct              0.25 // (Default: 0.25): Percentage of total players
 ttt_mer_credits_starting    1    // (Default: 1): Number of credits the Mercenary starts with
 ttt_kil_credits_starting    2    // (Default: 2): Number of credits the Killer starts with
 ttt_detective_search_only   1    // (Default: 1): Whether only detectives can search bodies or not
+ttt_independent_warning     0    // At the start of the round, if there is a Jester, Swapper, or Killer, all players are warned that there is an "independent player".
 ```

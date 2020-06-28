@@ -8,10 +8,10 @@ local pairs = pairs
 local deadPhantom = nil
 
 CreateConVar("ttt_bots_are_spectators", "0", FCVAR_ARCHIVE)
-CreateConVar("ttt_dyingshot", "0")
+CreateConVar("ttt_dyingshot", "0", FCVAR_NOTIFY)
 
-CreateConVar("ttt_killer_dna_range", "550")
-CreateConVar("ttt_killer_dna_basetime", "100")
+CreateConVar("ttt_killer_dna_range", "550", FCVAR_NOTIFY)
+CreateConVar("ttt_killer_dna_basetime", "100", FCVAR_NOTIFY)
 
 -- First spawn on the server
 function GM:PlayerInitialSpawn(ply)

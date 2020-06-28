@@ -1,6 +1,5 @@
 # TTT-Custom-Roles
-
-Adds a bunch of new roles to the Garry's Mod TTT gamemode, as seen on the Yogscast and Achievement Hunter's let's play.
+Adds a bunch of new roles to the Garry's Mod TTT game mode.
 
 **Steam workshop page:** https://steamcommunity.com/sharedfiles/filedetails/?id=1215502383
 
@@ -14,7 +13,7 @@ Adds a bunch of new roles to the Garry's Mod TTT gamemode, as seen on the Yogsca
 - [Fresh Garry](https://steamcommunity.com/id/Fresh_Garry) for the 'TTT Sprint' mod which was used as the base for this mods sprinting mechanics.
 - Kommandos, Lix3, FunCheetah, B1andy413, Cooliew, The_Samarox, Arack12 and Aspirin for helping me test.
 
-### Compatibility issues
+### Compatibility Issues
 
 Some weapon mods cause the team shops to bug out and only display one item (The one that is causing the issue). Here are some mods with known compatibility issues:
 
@@ -23,7 +22,7 @@ Some weapon mods cause the team shops to bug out and only display one item (The 
 - [TTT Blue Firework](https://steamcommunity.com/sharedfiles/filedetails/?id=1421303070)
 - [TTT Scarface Jihad Bomb](https://steamcommunity.com/sharedfiles/filedetails/?id=917717470)
 
-# Gameplay instructions
+# Gameplay Instructions
 
 ## Innocent Team:
 Goal: Kill all members of the traitor team
@@ -49,7 +48,7 @@ Goal: Kill all members of the traitor team
 - Has a chance to spawn instead of an Innocent
 - Has access to a shop
      - Spawns with one credit
-     - Can buy any naturally occuring weapon or items available to both Detectives and Traitors
+     - Can buy any naturally occurring weapon or items available to both Detectives and Traitors
 
 **Phantom**
 - Has a chance to spawn instead of an Innocent
@@ -105,7 +104,7 @@ Goal: Kill all members of the innocent team
 - Notified of team members and Jesters at the start of the round
 - Spawns with claws
      - Deals 50 damage to members of the innocent team
-     - If used to kill a player they will repsawn as a zombie
+     - If used to kill a player they will re-spawn as a zombie
 - Deals half damage will all standard weapons
 - Has access to a perk shop
      - Spawns with no credits
@@ -119,7 +118,7 @@ Goal: Kill all members of the innocent team
 - Takes no environmental damage (e.g. fire, fall, explosion...)
 - Can message members of the traitor team using team text and voice chat but will not recieve replies
 
-**Swapper (Goal: Get killed by another player and then fulfill their old goal)**
+**Swapper (Goal: Get killed by another player and then fulfil their old goal)**
 
 - Has a chance to spawn instead of an Innocent
 - Appears as a Jester to members of the traitor team
@@ -137,7 +136,7 @@ Goal: Kill all members of the innocent team
 - Traitors are notified if there is a Killer
 - Has access to a shop
      - Spawns with one credit
-     - Can buy any naturally occuring weapon or items available to both Detectives and Traitors
+     - Can buy any naturally occurring weapon or items available to both Detectives and Traitors
 
 # Server config options
 
@@ -180,10 +179,10 @@ ttt_hypnotist_required_traitors 2 // (Default: 2): Number of traitors for the Hy
 ttt_vampire_required_traitors   2 // (Default: 2): Number of traitors for the Vampire to spawn
 ttt_jester_required_innos       2 // (Default: 2): Number of innocents for the Jester to spawn
 ttt_swapper_required_innos      2 // (Default: 2): Number of innocents for the Swapper to spawn
-ttt_killer_required_innos       3 // (Default: 3): Number of innocents for the Killerto spawn
+ttt_killer_required_innos       3 // (Default: 3): Number of innocents for the Killer to spawn
 
 // Karma
-ttt_karma_jesterkill_penalty 50   // (Default: 50): Karma penalty for killing the Jester
+ttt_karma_jesterkill_penalty 50   // (Default: 50): Karma penalty for killing the Jester or Swapper
 ttt_karma_jester_ratio       0.5  // (Default: 0.5): Ratio of damage to Jesters, to be taken from karma
 
 // Other

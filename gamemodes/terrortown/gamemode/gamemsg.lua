@@ -145,7 +145,6 @@ end
 
 -- Communication control
 CreateConVar("ttt_limit_spectator_chat", "1", FCVAR_ARCHIVE + FCVAR_NOTIFY)
-CreateConVar("ttt_limit_spectator_voice", "1", FCVAR_ARCHIVE + FCVAR_NOTIFY)
 
 function GM:PlayerCanSeePlayersChat(text, team_only, listener, speaker)
 	if (not IsValid(listener)) then return false end
@@ -162,7 +161,6 @@ function GM:PlayerCanSeePlayersChat(text, team_only, listener, speaker)
 
 	if (GetRoundState() ~= ROUND_ACTIVE) or -- Round isn't active
 			(not GetConVar("ttt_limit_spectator_chat"):GetBool()) or -- Spectators can chat freely
-			(not DetectiveMode()) or -- Mumbling
 			(not sTeam and ((team_only and not speaker:IsSpecial()) or (not team_only))) or -- If someone alive talks (and not a special role in teamchat's case)
 			(not sTeam and team_only and speaker:GetRole() == listener:GetRole()) or
 			(sTeam and lTeam) then -- If the speaker and listener are spectators
@@ -185,25 +183,7 @@ function GM:PlayerSay(ply, text, team_only)
 
 	if GetRoundState() == ROUND_ACTIVE then
 		local team = ply:Team() == TEAM_SPEC
-		if team and not DetectiveMode() then
-			local filtered = {}
-			for k, v in pairs(string.Explode(" ", text)) do
-				-- grab word characters and whitelisted interpunction
-				-- necessary or leetspeek will be used (by trolls especially)
-				local word, interp = string.match(v, "(%a*)([%.,;!%?]*)")
-				if word ~= "" then
-					table.insert(filtered, mumbles[math.random(1, #mumbles)] .. interp)
-				end
-			end
-
-			-- make sure we have something to say
-			if table.Count(filtered) < 1 then
-				table.insert(filtered, mumbles[math.random(1, #mumbles)])
-			end
-
-			table.insert(filtered, 1, "[MUMBLED]")
-			return table.concat(filtered, " ")
-		elseif team_only and not team and (ply:IsTraitor() or ply:IsZombie() or ply:IsHypnotist() or ply:IsVampire() or ply:IsAssassin() or ply:IsDetective() or ply:IsJester() or ply:IsSwapper()) then
+		if team_only and not team and (ply:IsTraitor() or ply:IsZombie() or ply:IsHypnotist() or ply:IsVampire() or ply:IsAssassin() or ply:IsDetective() or ply:IsJester() or ply:IsSwapper()) then
 			local hasGlitch = false
 			for k, v in pairs(player.GetAll()) do
 				if v:IsGlitch() then hasGlitch = true end
@@ -241,11 +221,8 @@ function GM:PlayerCanHearPlayersVoice(listener, speaker)
 		return false, false
 	end
 
-	-- limited if specific convar is on, or we're in detective mode
-	local limit = DetectiveMode() or GetConVar("ttt_limit_spectator_voice"):GetBool()
-
 	-- Spectators should not be heard by living players during round
-	if speaker:IsSpec() and (not listener:IsSpec()) and limit and GetRoundState() == ROUND_ACTIVE then
+	if speaker:IsSpec() and (not listener:IsSpec()) and GetRoundState() == ROUND_ACTIVE then
 		return false, false
 	end
 

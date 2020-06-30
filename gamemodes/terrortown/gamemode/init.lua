@@ -158,7 +158,6 @@ CreateConVar("ttt_drinking_team_kill", "drink")
 CreateConVar("ttt_drinking_suicide", "drink")
 CreateConVar("ttt_drinking_jester_kill", "shot")
 
-local ttt_detective = CreateConVar("ttt_sherlock_mode", "1", FCVAR_ARCHIVE + FCVAR_NOTIFY)
 local ttt_minply = CreateConVar("ttt_minimum_players", "2", FCVAR_ARCHIVE + FCVAR_NOTIFY)
 
 -- debuggery
@@ -301,7 +300,6 @@ end
 -- Convar replication is broken in gmod, so we do this.
 -- I don't like it any more than you do, dear reader.
 function GM:SyncGlobals()
-	SetGlobalBool("ttt_detective", ttt_detective:GetBool())
 	SetGlobalBool("ttt_haste", ttt_haste:GetBool())
 	SetGlobalInt("ttt_time_limit_minutes", GetConVar("ttt_time_limit_minutes"):GetInt())
 	SetGlobalBool("ttt_highlight_admins", GetConVar("ttt_highlight_admins"):GetBool())

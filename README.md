@@ -5,6 +5,8 @@ Adds a bunch of new roles to the Garry's Mod TTT game mode.
 
 ## Differences to the [original by NoxxFlame](https://github.com/NoxxFlame/TTT-Custom-Roles).
 
+- Removes `ttt_sherlock_mode` and treats the game as though it is always true. i.e. players can inspect corpses to find the player's role. This is completely separate from `ttt_detective_search_only`, which still exists.
+- Removes `ttt_limit_spectator_voice` and treats it as always true. i.e. spectators can't use in-game voice.
 
 ### Special Thanks:
 

@@ -128,15 +128,15 @@ function GetKillerFilter(alive_only)
 end
 
 function GetInnocentFilter(alive_only)
-	return GetPlayerFilter(function(p) return (not (p:IsTraitor() or p:IsZombie() or p:IsHypnotist() or p:IsVampire() or p:IsAssassin())) and (not alive_only or p:IsTerror()) end)
+	return GetPlayerFilter(function(p) return (not p:IsTraitorTeam()) and (not alive_only or p:IsTerror()) end)
 end
 
 function GetTraitorsFilter(alive_only)
-	return GetPlayerFilter(function(p) return (p:IsTraitor() or p:IsZombie() or p:IsHypnotist() or p:IsVampire() or p:IsAssassin()) and (not alive_only or p:IsTerror()) end)
+	return GetPlayerFilter(function(p) return p:IsTraitorTeam() and (not alive_only or p:IsTerror()) end)
 end
 
 function GetTraitorsAndJestersFilter(alive_only)
-	return GetPlayerFilter(function(p) return (p:IsTraitor() or p:IsZombie() or p:IsHypnotist() or p:IsVampire() or p:IsAssassin() or p:IsJester() or p:IsSwapper()) and (not alive_only or p:IsTerror()) end)
+	return GetPlayerFilter(function(p) return (p:IsTraitorTeam() or p:IsJester() or p:IsSwapper()) and (not alive_only or p:IsTerror()) end)
 end
 
 function GetRoleFilter(role, alive_only)
@@ -183,12 +183,12 @@ function GM:PlayerSay(ply, text, team_only)
 
 	if GetRoundState() == ROUND_ACTIVE then
 		local team = ply:Team() == TEAM_SPEC
-		if team_only and not team and (ply:IsTraitor() or ply:IsZombie() or ply:IsHypnotist() or ply:IsVampire() or ply:IsAssassin() or ply:IsDetective() or ply:IsJester() or ply:IsSwapper()) then
+		if team_only and not team and (ply:IsTraitorTeam() or ply:IsDetective() or ply:IsJester() or ply:IsSwapper()) then
 			local hasGlitch = false
 			for k, v in pairs(player.GetAll()) do
 				if v:IsGlitch() then hasGlitch = true end
 			end
-			if (ply:IsTraitor() or ply:IsZombie() or ply:IsHypnotist() or ply:IsVampire() or ply:IsAssassin()) and hasGlitch then
+			if ply:IsTraitorTeam() and hasGlitch then
 				ply:SendLua("chat.AddText(\"The glitch is scrambling your communications\")")
 				return ""
 			else

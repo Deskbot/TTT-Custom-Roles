@@ -620,7 +620,7 @@ function TellTraitorsAboutTraitors()
 	local jesternick = {}
 	local killernick = {}
 	for k, v in pairs(player.GetAll()) do
-		if v:IsTraitor() or v:IsHypnotist() or v:IsVampire() or v:IsZombie() or v:IsAssassin() then
+		if v:IsTraitorTeam() then
 			table.insert(traitornicks, v:Nick())
 		elseif v:IsGlitch() then
 			table.insert(traitornicks, v:Nick())
@@ -635,7 +635,7 @@ function TellTraitorsAboutTraitors()
 	-- This is ugly as hell, but it's kinda nice to filter out the names of the
 	-- traitors themselves in the messages to them
 	for k, v in pairs(player.GetAll()) do
-		if v:IsTraitor() or v:IsHypnotist() or v:IsVampire() or v:IsZombie() or v:IsAssassin() then
+		if v:IsTraitorTeam() then
 			if table.Count(glitchnick) > 0 then
 				v:PrintMessage(HUD_PRINTTALK, "There is a Glitch.")
 				v:PrintMessage(HUD_PRINTCENTER, "There is a Glitch.")
@@ -1024,7 +1024,7 @@ function GM:TTTCheckForWin()
 	local killer_alive = false
 	for k, v in pairs(player.GetAll()) do
 		if (v:Alive() and v:IsTerror()) or v:GetPData("IsZombifying", 0) == 1 then
-			if v:GetTraitor() or v:GetHypnotist() or v:GetZombie() or v:GetVampire() or v:GetAssassin() or v:GetPData("IsZombifying", 0) == 1 then
+			if v:IsTraitorTeam() or v:GetPData("IsZombifying", 0) == 1 then
 				traitor_alive = true
 			elseif v:GetJester() then
 				jester_alive = true

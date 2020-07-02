@@ -80,7 +80,7 @@ function ScoreGroup(p)
 			return GROUP_FOUND
 		else
 			local client = LocalPlayer()
-			-- To terrorists, missing players show as alive
+			-- To innocent terrorists, missing players show as alive
 			if client:IsSpec()
 				or client:IsActiveTraitor()
 				or client:IsActiveHypnotist()

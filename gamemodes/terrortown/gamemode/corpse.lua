@@ -124,7 +124,10 @@ local function IdentifyBody(ply, rag)
 		local vic = player.GetBySteamID(vicsid)
 
 		-- is this an unconfirmed dead?
-		if IsValid(vic) and (not vic:GetNWBool("body_searched", false)) and (not vic:GetNWBool("body_found", false)) then
+		if IsValid(vic)
+			and (not vic:GetNWBool("body_searched", false))
+			and (not vic:GetNWBool("body_found", false))
+		then
 			LANG.Msg("body_confirm", { finder = finder, victim = vic:Nick() })
 
 			-- update scoreboard status

@@ -316,7 +316,7 @@ if CLIENT then
 
 	oldScoreGroup = oldScoreGroup or ScoreGroup
 
-	function ScoreGroup(ply)
+	local function ScoreGroup(ply)
 		if ply.DefibHide then return GROUP_FOUND end
 		return oldScoreGroup(ply)
 	end

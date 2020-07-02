@@ -55,7 +55,6 @@ local function IdentifyBody(ply, rag)
 
 	local finder = ply:Nick()
 	local nick = CORPSE.GetPlayerNick(rag, "")
-	local traitor = (rag.was_role == ROLE_TRAITOR)
 
 	-- Announce body
 	if bodyfound:GetBool() and not CORPSE.GetFound(rag, false) then
@@ -104,7 +103,7 @@ local function IdentifyBody(ply, rag)
 			deadply:SetNWBool("body_searched", true)
 			deadply:SetNWBool("body_found", true)
 
-			if traitor then
+			if rag.was_role == ROLE_TRAITOR then
 				-- update innocent's list of traitors
 				SendConfirmedTraitors(GetInnocentFilter(false))
 			end

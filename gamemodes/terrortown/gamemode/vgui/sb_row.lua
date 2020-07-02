@@ -116,7 +116,9 @@ function GM:TTTScoreboardColorForPlayer(ply)
 end
 
 function GM:TTTScoreboardRowColorForPlayer(ply)
-	if not IsValid(ply) or GetRoundState() == ROUND_WAIT or GetRoundState() == ROUND_PREP then return rolecolor.default end
+	if not IsValid(ply) or GetRoundState() == ROUND_WAIT or GetRoundState() == ROUND_PREP then
+		return rolecolor.default
+	end
 
 	if (ScoreGroup(ply) == GROUP_SEARCHED and ply.search_result)
 		or ply == LocalPlayer()

@@ -464,9 +464,9 @@ local function StoreSearchResult(search)
 	if search.owner then
 		-- if existing result was not ours, it was detective's, and should not
 		-- be overwritten
-		local ply = search.owner
-		if (not ply.search_result) or ply.search_result.show then
+		local ply = search.owner -- player who has been searched
 
+		if (not ply.search_result) or ply.search_result.show then
 			ply.search_result = search
 
 			-- this is useful for targetid

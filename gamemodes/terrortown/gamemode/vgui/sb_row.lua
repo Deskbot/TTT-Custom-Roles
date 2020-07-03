@@ -120,9 +120,10 @@ function GM:TTTScoreboardRowColorForPlayer(ply)
 		return rolecolor.default
 	end
 
-	if (ScoreGroup(ply) == GROUP_SEARCHED and ply.search_result)
+	local group = ScoreGroup(ply)
+
+	if (group == GROUP_SEARCHED)
 		or ply == LocalPlayer()
-		or (ply:GetNWBool('RoleRevealed', false) and LocalPlayer():IsRole(ROLE_DETECTIVE))
 	then
 		if ply:IsTraitor() then
 			return rolecolor.traitor

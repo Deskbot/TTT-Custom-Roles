@@ -5,6 +5,7 @@ Adds a bunch of new roles to the Garry's Mod TTT game mode.
 
 ## Differences to the [original by NoxxFlame](https://github.com/NoxxFlame/TTT-Custom-Roles).
 
+- Fixes a bug that caused the sprint re-generation rate of players with special traitor roles to be less than for a vanilla traitor.
 
 ### Special Thanks:
 

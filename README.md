@@ -5,6 +5,7 @@ Adds a bunch of new roles to the Garry's Mod TTT game mode.
 
 ## Differences to the [original by NoxxFlame](https://github.com/NoxxFlame/TTT-Custom-Roles).
 
+- All players are notified in the chat when config settings are changed that relate to roles and game rules. Notably this includes role likelihoods and conditions for roles to be enabled.
 
 ### Special Thanks:
 

@@ -382,7 +382,7 @@ local function ShowSearchScreen(search_raw)
 	-- buttons
 	local by = rh - bh - (m / 2)
 
-	local detectiveSearchOnly = GetGlobalBool("ttt_detective_search_only", true)
+	local detectiveSearchOnly = GetGlobalBool("ttt_detective_search_only", false)
 	if not detectiveSearchOnly then
 		local dident = vgui.Create("DButton", dcont)
 		dident:SetPos(m, by)

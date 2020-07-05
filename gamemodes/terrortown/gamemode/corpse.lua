@@ -241,7 +241,7 @@ function CORPSE.ShowSearch(ply, rag, covert, long_range)
 	-- basic sanity check
 	if nick == nil or eq == nil or role == nil then return end
 
-	local detectiveSearchOnly = GetGlobalBool("ttt_detective_search_only", true)
+	local detectiveSearchOnly = GetGlobalBool("ttt_detective_search_only", false)
 
 	local credits = CORPSE.GetCredits(rag, 0)
 	if (ply:IsActiveDetective() or ply:IsActiveTraitor() or ply:IsActiveMercenary() or ply:IsActiveZombie() or ply:IsActiveVampire() or ply:IsActiveHypnotist() or ply:IsActiveAssassin() or ply:IsActiveKiller()) and credits > 0 and (not long_range) then

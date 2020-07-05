@@ -8,6 +8,7 @@ Adds a bunch of new roles to the Garry's Mod TTT game mode.
 - All players are notified in the chat when config settings are changed that relate to roles and game rules. Notably this includes role likelihoods and conditions for roles to be enabled.
 - Config defaults have been altered. Notably `ttt_detective_search_only` defaults to `0`.
 - Fixes a bug that causes detectives to not spawn with claws when turned into a Zombie.
+- Adds option `ttt_independent_warning` (Default: 1). At the start of the round, if there is a Jester, Swapper, or Killer, all players are warned that there is an "independent player".
 - Fixes a bug that causes zombies to not lose their claws when forced into a different role.
 
 ### Special Thanks:
@@ -198,4 +199,9 @@ ttt_zombie_pct              0.2  // Percentage of total players that will be a Z
 ttt_mer_credits_starting    2    // Number of credits the Mercenary starts with
 ttt_kil_credits_starting    2    // Number of credits the Killer starts with
 ttt_detective_search_only   0    // Whether only detectives can search bodies or not
+ttt_zombie_pct              0.25 // (Default: 0.25): Percentage of total players that will be a Zombie
+ttt_mer_credits_starting    1    // (Default: 1): Number of credits the Mercenary starts with
+ttt_kil_credits_starting    2    // (Default: 2): Number of credits the Killer starts with
+ttt_detective_search_only   1    // (Default: 1): Whether only detectives can search bodies or not
+ttt_independent_warning     1    // (Default: 1): At the start of the round, if there is a Jester, Swapper, or Killer, all players are warned that there is an "independent player".
 ```

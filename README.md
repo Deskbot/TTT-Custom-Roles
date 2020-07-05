@@ -5,6 +5,7 @@ Adds a bunch of new roles to the Garry's Mod TTT game mode.
 
 ## Differences to the [original by NoxxFlame](https://github.com/NoxxFlame/TTT-Custom-Roles).
 
+- Gives Assassins and Vampires access to custom traitor shop items.
 
 ### Special Thanks:
 

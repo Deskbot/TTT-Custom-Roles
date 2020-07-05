@@ -10,6 +10,7 @@ Adds a bunch of new roles to the Garry's Mod TTT game mode.
 - Config defaults have been altered. Notably `ttt_detective_search_only` defaults to `0`.
 - Fixes a bug that causes detectives to not spawn with claws when turned into a Zombie.
 - Adds option `ttt_independent_warning` (Default: 1). At the start of the round, if there is a Jester, Swapper, or Killer, all players are warned that there is an "independent player".
+- Fixes a bug that caused the sprint re-generation rate of players with special traitor roles to be less than for a vanilla traitor.
 - Fixes a bug that causes zombies to not lose their claws when forced into a different role.
 - Removes `ttt_sherlock_mode` and treats the game as though it is always true. i.e. players can inspect corpses to find the player's role. This is completely separate from `ttt_detective_search_only`, which still exists.
 - Removes `ttt_limit_spectator_voice` and treats it as always true. i.e. spectators can't use in-game voice.

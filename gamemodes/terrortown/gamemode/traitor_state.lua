@@ -169,7 +169,10 @@ local function force_innocent(ply)
 	if ply:HasWeapon("weapon_vam_fangs") then
 		ply:StripWeapon("weapon_vam_fangs")
 	end
-
+	if ply:HasWeapon("weapon_zom_claws") then
+		ply:StripWeapon("weapon_zom_claws")
+	end
+	
 	SendFullStateUpdate()
 end
 
@@ -185,7 +188,10 @@ local function force_traitor(ply)
 	if ply:HasWeapon("weapon_vam_fangs") then
 		ply:StripWeapon("weapon_vam_fangs")
 	end
-
+	if ply:HasWeapon("weapon_zom_claws") then
+		ply:StripWeapon("weapon_zom_claws")
+	end
+	
 	SendFullStateUpdate()
 end
 
@@ -201,7 +207,10 @@ local function force_detective(ply)
 	if ply:HasWeapon("weapon_vam_fangs") then
 		ply:StripWeapon("weapon_vam_fangs")
 	end
-
+	if ply:HasWeapon("weapon_zom_claws") then
+		ply:StripWeapon("weapon_zom_claws")
+	end
+	
 	SendFullStateUpdate()
 end
 
@@ -217,7 +226,10 @@ local function force_mercenary(ply)
 	if ply:HasWeapon("weapon_vam_fangs") then
 		ply:StripWeapon("weapon_vam_fangs")
 	end
-
+	if ply:HasWeapon("weapon_zom_claws") then
+		ply:StripWeapon("weapon_zom_claws")
+	end
+	
 	SendFullStateUpdate()
 end
 
@@ -232,6 +244,9 @@ local function force_hypnotist(ply)
 	end
 	if ply:HasWeapon("weapon_vam_fangs") then
 		ply:StripWeapon("weapon_vam_fangs")
+	end
+	if ply:HasWeapon("weapon_zom_claws") then
+		ply:StripWeapon("weapon_zom_claws")
 	end
 	ply:Give("weapon_hyp_brainwash")
 
@@ -250,7 +265,10 @@ local function force_glitch(ply)
 	if ply:HasWeapon("weapon_vam_fangs") then
 		ply:StripWeapon("weapon_vam_fangs")
 	end
-
+	if ply:HasWeapon("weapon_zom_claws") then
+		ply:StripWeapon("weapon_zom_claws")
+	end
+	
 	SendFullStateUpdate()
 end
 
@@ -266,7 +284,10 @@ local function force_jester(ply)
 	if ply:HasWeapon("weapon_vam_fangs") then
 		ply:StripWeapon("weapon_vam_fangs")
 	end
-
+	if ply:HasWeapon("weapon_zom_claws") then
+		ply:StripWeapon("weapon_zom_claws")
+	end
+	
 	SendFullStateUpdate()
 end
 
@@ -282,7 +303,10 @@ local function force_phantom(ply)
 	if ply:HasWeapon("weapon_vam_fangs") then
 		ply:StripWeapon("weapon_vam_fangs")
 	end
-
+	if ply:HasWeapon("weapon_zom_claws") then
+		ply:StripWeapon("weapon_zom_claws")
+	end
+	
 	SendFullStateUpdate()
 end
 
@@ -298,7 +322,11 @@ local function force_zombie(ply)
 	if ply:HasWeapon("weapon_vam_fangs") then
 		ply:StripWeapon("weapon_vam_fangs")
 	end
-
+	if ply:HasWeapon("weapon_zom_claws") then
+		ply:StripWeapon("weapon_zom_claws")
+	end
+	ply:Give("weapon_zom_claws")
+	
 	SendFullStateUpdate()
 end
 
@@ -314,7 +342,11 @@ local function force_vampire(ply)
 	if ply:HasWeapon("weapon_vam_fangs") then
 		ply:StripWeapon("weapon_vam_fangs")
 	end
-
+	if ply:HasWeapon("weapon_zom_claws") then
+		ply:StripWeapon("weapon_zom_claws")
+	end
+	ply:Give("weapon_vam_fangs")
+	
 	SendFullStateUpdate()
 end
 
@@ -330,8 +362,10 @@ local function force_swapper(ply)
 	if ply:HasWeapon("weapon_vam_fangs") then
 		ply:StripWeapon("weapon_vam_fangs")
 	end
-	ply:Give("weapon_vam_fangs")
-
+	if ply:HasWeapon("weapon_zom_claws") then
+		ply:StripWeapon("weapon_zom_claws")
+	end
+	
 	SendFullStateUpdate()
 end
 
@@ -347,7 +381,10 @@ local function force_assassin(ply)
 	if ply:HasWeapon("weapon_vam_fangs") then
 		ply:StripWeapon("weapon_vam_fangs")
 	end
-
+	if ply:HasWeapon("weapon_zom_claws") then
+		ply:StripWeapon("weapon_zom_claws")
+	end
+	
 	SendFullStateUpdate()
 end
 
@@ -363,7 +400,10 @@ local function force_killer(ply)
 	if ply:HasWeapon("weapon_vam_fangs") then
 		ply:StripWeapon("weapon_vam_fangs")
 	end
-
+	if ply:HasWeapon("weapon_zom_claws") then
+		ply:StripWeapon("weapon_zom_claws")
+	end
+	
 	SendFullStateUpdate()
 end
 

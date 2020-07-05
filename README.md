@@ -4,7 +4,7 @@ Adds a bunch of new roles to the Garry's Mod TTT game mode.
 **Steam workshop page:** https://steamcommunity.com/sharedfiles/filedetails/?id=1215502383
 
 ## Differences to the [original by NoxxFlame](https://github.com/NoxxFlame/TTT-Custom-Roles).
-
+- Fixes a bug that causes detectives to not spawn with claws when turned into a Zombie.
 
 ### Special Thanks:
 

@@ -127,7 +127,7 @@ function GM:OnPlayerChat(ply, text, teamchat, dead)
 		dead = true
 	end
 
-	if teamchat and (not team and not (ply:IsTraitor() or ply:IsZombie() or ply:IsHypnotist() or ply:IsVampire() or ply:IsAssassin() or ply:IsDetective()) or team) then
+	if teamchat and (not team and not (ply:IsTraitorTeam() or ply:IsDetective()) or team) then
 		teamchat = false
 	end
 
@@ -300,7 +300,7 @@ function RADIO:GetTargetType()
 		end
 	elseif ent:GetClass() == "prop_ragdoll" and CORPSE.GetPlayerNick(ent, "") ~= "" then
 
-		if DetectiveMode() and not CORPSE.GetFound(ent, false) then
+		if not CORPSE.GetFound(ent, false) then
 			return "quick_corpse", true
 		else
 			return ent, false

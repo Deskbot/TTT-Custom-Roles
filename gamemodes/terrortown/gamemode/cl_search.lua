@@ -464,9 +464,9 @@ local function StoreSearchResult(search)
 	if search.owner then
 		-- if existing result was not ours, it was detective's, and should not
 		-- be overwritten
-		local ply = search.owner
-		if (not ply.search_result) or ply.search_result.show then
+		local ply = search.owner -- player who has been searched
 
+		if (not ply.search_result) or ply.search_result.show then
 			ply.search_result = search
 
 			-- this is useful for targetid
@@ -492,10 +492,17 @@ local function ReceiveRagdollSearch()
 	search = {}
 
 	-- Basic info
+
+	-- ragdoll entity index
 	search.eidx = net.ReadUInt(16)
 
+	-- player whose ragdoll it is
 	search.owner = Entity(net.ReadUInt(8))
-	if not (IsValid(search.owner) and search.owner:IsPlayer() and (not search.owner:IsTerror())) then
+
+	if not IsValid(search.owner) -- index is not for a real entity
+		or not search.owner:IsPlayer() -- this entity is not a player character
+		or search.owner:IsTerror()
+	then
 		search.owner = nil
 	end
 

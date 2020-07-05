@@ -408,7 +408,7 @@ function GM:HUDDrawTargetID()
 
 		target_corpse = true
 
-		if CORPSE.GetFound(ent, false) or not DetectiveMode() then
+		if CORPSE.GetFound(ent, false) then
 			text = CORPSE.GetPlayerNick(ent, "A Terrorist")
 		else
 			text = L.target_unid

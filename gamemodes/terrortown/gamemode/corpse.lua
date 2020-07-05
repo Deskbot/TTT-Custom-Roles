@@ -55,7 +55,6 @@ local function IdentifyBody(ply, rag)
 
 	local finder = ply:Nick()
 	local nick = CORPSE.GetPlayerNick(rag, "")
-	local traitor = (rag.was_role == ROLE_TRAITOR)
 
 	-- Announce body
 	if bodyfound:GetBool() and not CORPSE.GetFound(rag, false) then
@@ -104,7 +103,7 @@ local function IdentifyBody(ply, rag)
 			deadply:SetNWBool("body_searched", true)
 			deadply:SetNWBool("body_found", true)
 
-			if traitor then
+			if rag.was_role == ROLE_TRAITOR then
 				-- update innocent's list of traitors
 				SendConfirmedTraitors(GetInnocentFilter(false))
 			end
@@ -124,7 +123,10 @@ local function IdentifyBody(ply, rag)
 		local vic = player.GetBySteamID(vicsid)
 
 		-- is this an unconfirmed dead?
-		if IsValid(vic) and (not vic:GetNWBool("body_searched", false)) and (not vic:GetNWBool("body_found", false)) then
+		if IsValid(vic)
+			and (not vic:GetNWBool("body_searched", false))
+			and (not vic:GetNWBool("body_found", false))
+		then
 			LANG.Msg("body_confirm", { finder = finder, victim = vic:Nick() })
 
 			-- update scoreboard status
@@ -251,7 +253,7 @@ function CORPSE.ShowSearch(ply, rag, covert, long_range)
 		ServerLog(ply:Nick() .. " took " .. credits .. " credits from the body of " .. nick .. "\n")
 		SCORE:HandleCreditFound(ply, nick, credits)
 		return
-	elseif DetectiveMode() and not covert then
+	elseif not covert then
 		if ply:IsDetective() or not detectiveSearchOnly then
 			IdentifyBody(ply, rag)
 		elseif not ply:IsSpec() and not ownerEnt:GetNWBool("det_called", false) and not ownerEnt:GetNWBool("body_searched", false) then

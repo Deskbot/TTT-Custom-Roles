@@ -73,22 +73,25 @@ function ScoreGroup(p)
 		return group
 	end
 
-	if DetectiveMode() then
-		if p:IsSpec() and (not p:Alive()) then
-			if p:GetNWBool("body_searched", false) then
-				return GROUP_SEARCHED
-			elseif p:GetNWBool("body_found", false) then
-				return GROUP_FOUND
+	if p:IsSpec() and (not p:Alive()) then
+		if p:GetNWBool("body_searched", false) then
+			return GROUP_SEARCHED
+		elseif p:GetNWBool("body_found", false) then
+			return GROUP_FOUND
+		else
+			local client = LocalPlayer()
+			-- To innocent terrorists, missing players show as alive
+			if client:IsSpec()
+				or client:IsActiveTraitor()
+				or client:IsActiveHypnotist()
+				or client:IsActiveVampire()
+				or client:IsActiveAssassin()
+				or client:IsActiveZombie()
+				or ((GAMEMODE.round_state ~= ROUND_ACTIVE) and client:IsTerror())
+			then
+				return GROUP_NOTFOUND
 			else
-				local client = LocalPlayer()
-				-- To terrorists, missing players show as alive
-				if client:IsSpec() or
-						client:IsActiveTraitor() or client:IsActiveHypnotist() or client:IsActiveVampire() or client:IsActiveAssassin() or client:IsActiveZombie() or
-						((GAMEMODE.round_state ~= ROUND_ACTIVE) and client:IsTerror()) then
-					return GROUP_NOTFOUND
-				else
-					return GROUP_TERROR
-				end
+				return GROUP_TERROR
 			end
 		end
 	end
@@ -151,19 +154,17 @@ function PANEL:Init()
 	t:SetGroupInfo(GetTranslation("spectators"), Color(200, 200, 0, 100), GROUP_SPEC)
 	self.ply_groups[GROUP_SPEC] = t
 
-	if DetectiveMode() then
-		t = vgui.Create("TTTScoreGroup", self.ply_frame:GetCanvas())
-		t:SetGroupInfo(GetTranslation("sb_mia"), Color(130, 190, 130, 100), GROUP_NOTFOUND)
-		self.ply_groups[GROUP_NOTFOUND] = t
+	t = vgui.Create("TTTScoreGroup", self.ply_frame:GetCanvas())
+	t:SetGroupInfo(GetTranslation("sb_mia"), Color(130, 190, 130, 100), GROUP_NOTFOUND)
+	self.ply_groups[GROUP_NOTFOUND] = t
 
-		t = vgui.Create("TTTScoreGroup", self.ply_frame:GetCanvas())
-		t:SetGroupInfo(GetTranslation("sb_confirmed"), Color(130, 170, 10, 100), GROUP_FOUND)
-		self.ply_groups[GROUP_FOUND] = t
+	t = vgui.Create("TTTScoreGroup", self.ply_frame:GetCanvas())
+	t:SetGroupInfo(GetTranslation("sb_confirmed"), Color(130, 170, 10, 100), GROUP_FOUND)
+	self.ply_groups[GROUP_FOUND] = t
 
-		t = vgui.Create("TTTScoreGroup", self.ply_frame:GetCanvas())
-		t:SetGroupInfo(GetTranslation("sb_investigated"), Color(70, 70, 130, 100), GROUP_SEARCHED)
-		self.ply_groups[GROUP_SEARCHED] = t
-	end
+	t = vgui.Create("TTTScoreGroup", self.ply_frame:GetCanvas())
+	t:SetGroupInfo(GetTranslation("sb_investigated"), Color(70, 70, 130, 100), GROUP_SEARCHED)
+	self.ply_groups[GROUP_SEARCHED] = t
 
 	hook.Call("TTTScoreGroups", nil, self.ply_frame:GetCanvas(), self.ply_groups)
 

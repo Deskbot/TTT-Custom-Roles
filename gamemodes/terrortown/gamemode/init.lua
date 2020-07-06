@@ -1133,6 +1133,7 @@ function SelectRoles()
 	-- determine how many of each role we want
 	local choice_count = #choices
 	local traitor_count = GetTraitorCount(choice_count)
+	local non_traitor_count = choice_count - traitor_count
 	local zombie_count = GetZombieCount(choice_count)
 	local det_count = GetDetectiveCount(choice_count)
 
@@ -1180,6 +1181,20 @@ function SelectRoles()
 	local jesterEnabled = GetConVar("ttt_jester_enabled"):GetInt() == 1
 	local swapperEnabled = GetConVar("ttt_swapper_enabled"):GetInt() == 1
 	local killerEnabled = GetConVar("ttt_killer_enabled"):GetInt() == 1
+
+	local jesterReqInnos = GetConVar("ttt_jester_required_innos"):GetInt()
+	local swapperReqInnos = GetConVar("ttt_swapper_required_innos"):GetInt()
+	local killerReqInnos = GetConVar("ttt_killer_required_innos"):GetInt()
+
+	if non_traitor_count < jesterReqInnos then
+		jesterEnabled = false
+	end
+	if non_traitor_count < swapperReqInnos then
+		swapperEnabled = false
+	end
+	if non_traitor_count < killerReqInnos then
+		killerEnabled = false
+	end
 
 	local jester_chance = GetConVar("ttt_jester_chance"):GetFloat()
 	local swapper_chance = GetConVar("ttt_swapper_chance"):GetFloat()
@@ -1412,7 +1427,7 @@ function SelectRoles()
 		end
 	end
 
-	if jesterEnabled and #choices >= GetConVar("ttt_jester_required_innos"):GetInt() and math.random() <= real_jester_chance and not hasJester and not hasKiller then
+	if jesterEnabled and math.random() <= real_jester_chance and not hasJester and not hasKiller then
 		local pick = math.random(1, #choices)
 		local pply = choices[pick]
 		if IsValid(pply) then
@@ -1421,7 +1436,7 @@ function SelectRoles()
 			hasJester = true
 		end
 		table.remove(choices, pick)
-	elseif swapperEnabled and #choices >= GetConVar("ttt_swapper_required_innos"):GetInt() and math.random() <= real_swapper_chance and not hasJester and not hasKiller then
+	elseif swapperEnabled and math.random() <= real_swapper_chance and not hasJester and not hasKiller then
 		local pick = math.random(1, #choices)
 		local pply = choices[pick]
 		if IsValid(pply) then
@@ -1430,7 +1445,7 @@ function SelectRoles()
 			hasJester = true
 		end
 		table.remove(choices, pick)
-	elseif killerEnabled and #choices >= GetConVar("ttt_killer_required_innos"):GetInt() and math.random() <= real_killer_chance and not hasJester and not hasKiller then
+	elseif killerEnabled and math.random() <= real_killer_chance and not hasJester and not hasKiller then
 		local pick = math.random(1, #choices)
 		local pply = choices[pick]
 		if IsValid(pply) then

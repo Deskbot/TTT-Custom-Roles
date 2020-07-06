@@ -64,7 +64,7 @@ end
 function plymeta:SubtractCredits(amt) self:AddCredits(-amt) end
 
 function plymeta:SetDefaultCredits()
-	if self:GetTraitor() then
+	if self:IsTraitorTeam() then
 		local c = GetConVarNumber("ttt_credits_starting")
 		if CountTraitors() == 1 then
 			c = c + GetConVarNumber("ttt_credits_alonebonus")

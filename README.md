@@ -7,6 +7,7 @@ Adds a bunch of new roles to the Garry's Mod TTT game mode.
 
 - Fixes a bug that sometimes causes a searched player to not have their alignment shown in the scoreboard table.
 - Gives Assassins and Vampires access to custom traitor shop items.
+- Every traitor role starts with the same number of credits as configured by the existing command (`ttt_credits_starting`).
 - All players are notified in the chat when config settings are changed that relate to roles and game rules. Notably this includes role likelihoods and conditions for roles to be enabled.
 - Config defaults have been altered. Notably `ttt_detective_search_only` defaults to `0`.
 - Fixes a bug that causes detectives to not spawn with claws when turned into a Zombie.
@@ -16,6 +17,7 @@ Adds a bunch of new roles to the Garry's Mod TTT game mode.
 - Fixes a bug that causes zombies to not lose their claws when forced into a different role.
 - Removes `ttt_sherlock_mode` and treats the game as though it is always true. i.e. players can inspect corpses to find the player's role. This is completely separate from `ttt_detective_search_only`, which still exists.
 - Removes `ttt_limit_spectator_voice` and treats it as always true. i.e. spectators can't use in-game voice.
+
 
 ### Special Thanks:
 

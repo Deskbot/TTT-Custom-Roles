@@ -1418,8 +1418,28 @@ function SelectRoles()
 		end
 	end
 
+	-- attempt to pick the one independent if not already picked
 	if not hasIndependent then
-		if jesterEnabled and math.random() <= real_jester_chance then
+		-- pick a number between 0 and 1
+		local rand = math.random()
+
+		-- give each special role part of the range between 0 and 1
+		local jesterThreshold = 0
+		local swapperThreshold = 0
+		local killerThreshold = 0
+
+		if jesterEnabled then
+			jesterThreshold = real_jester_chance
+		end
+		if swapperEnabled then
+			swapperThreshold = jesterThreshold + real_swapper_chance
+		end
+		if killerEnabled then
+			killerThreshold = swapperThreshold + real_killer_chance
+		end
+
+		-- which number range if any is the random number in
+		if rand < jesterThreshold then
 			local pick = math.random(1, #choices)
 			local pply = choices[pick]
 			if IsValid(pply) then
@@ -1428,7 +1448,7 @@ function SelectRoles()
 				hasIndependent = true
 			end
 			table.remove(choices, pick)
-		elseif swapperEnabled and math.random() <= real_swapper_chance then
+		elseif rand < swapperThreshold then
 			local pick = math.random(1, #choices)
 			local pply = choices[pick]
 			if IsValid(pply) then
@@ -1437,7 +1457,7 @@ function SelectRoles()
 				hasIndependent = true
 			end
 			table.remove(choices, pick)
-		elseif killerEnabled and math.random() <= real_killer_chance then
+		elseif rand < killerThreshold then
 			local pick = math.random(1, #choices)
 			local pply = choices[pick]
 			if IsValid(pply) then

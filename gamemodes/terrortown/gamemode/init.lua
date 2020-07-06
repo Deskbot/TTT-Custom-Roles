@@ -1489,7 +1489,7 @@ function SelectRoles()
 			hasPhantom = true
 		end
 	end
-	if GetConVar("ttt_glitch_enabled"):GetInt() == 1 and #choices >= GetConVar("ttt_glitch_required_innos"):GetInt() and math.random() <= glitch_chance and not hasSpecial and not hasGlitch and ts > 1 then
+	if GetConVar("ttt_glitch_enabled"):GetInt() == 1 and #choices >= GetConVar("ttt_glitch_required_innos"):GetInt() and math.random() <= glitch_chance and not hasGlitch and ts > 1 then
 		local pick = math.random(1, #choices)
 		local pply = choices[pick]
 		if IsValid(pply) then

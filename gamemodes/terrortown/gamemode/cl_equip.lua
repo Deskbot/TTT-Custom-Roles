@@ -32,12 +32,14 @@ function GetEquipmentForRole(role)
 		-- find buyable weapons to load info from
 		for k, v in pairs(weapons.GetList()) do
 			if v and v.CanBuy then
-				-- If the player is an assassin or vampire they should have all weapons that vanilla traitors have
-                if (role == ROLE_ASSASSIN or role == ROLE_VAMPIRE)
+				local inheritWeaponsFromRole = roleInheritsWeaponsFromRole(role)
+
+				-- If the role inherits weapons from another role
+                if inheritWeaponsFromRole != nil
                     -- and they can't already buy this weapon
                     and not table.HasValue(v.CanBuy, role)
-                    -- and vanilla traitors CAN buy this weapon, let this player buy it too
-					and table.HasValue(v.CanBuy, ROLE_TRAITOR)
+                    -- and the inherited role can buy the weapon
+					and table.HasValue(v.CanBuy, inheritWeaponsFromRole)
 				then
 					print(role, v.PrintName)
                     table.insert(v.CanBuy, role)

@@ -404,11 +404,7 @@ local function OrderEquipment(ply, cmd, args)
 		-- weapon whitelist check
 
 		local role = ply:GetRole()
-
-		local inheritWeaponsFromRole = nil
-		if role == ROLE_ASSASSIN or role == ROLE_VAMPIRE then
-			inheritWeaponsFromRole = ROLE_TRAITOR
-		end
+		local inheritWeaponsFromRole = roleInheritsWeaponsFromRole(role)
 
 		if not table.HasValue(swep_table.CanBuy, role) then
 			-- there are no other weapons this role can buy

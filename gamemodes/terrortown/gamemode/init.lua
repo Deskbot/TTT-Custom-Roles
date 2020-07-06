@@ -1324,40 +1324,45 @@ function SelectRoles()
 
 			-- make this guy traitor if he was not a traitor last time, or if he makes a roll
 			if IsValid(pply) and ((not (table.HasValue(prev_roles[ROLE_TRAITOR], pply) or table.HasValue(prev_roles[ROLE_ZOMBIE], pply) or table.HasValue(prev_roles[ROLE_HYPNOTIST], pply) or table.HasValue(prev_roles[ROLE_VAMPIRE], pply) or table.HasValue(prev_roles[ROLE_ASSASSIN], pply))) or (math.random(1, 3) == 2)) and pply:SteamID() ~= "STEAM_0:1:22691201" then
-				-- pick a number between 0 and 1
-				local rand = math.random()
+				if not hasSpecial then
+					-- pick a number between 0 and 1
+					local rand = math.random()
 
-				-- give each special role part of the range between 0 and 1
-				local hypThreshold = 0
-				local vamThreshold = 0
-				local assThreshold = 0
+					-- give each special role part of the range between 0 and 1
+					local hypThreshold = 0
+					local vamThreshold = 0
+					local assThreshold = 0
 
-				if ts == GetConVar("ttt_hypnotist_required_traitors"):GetInt() - 1 and hypnotistEnabled and not hasSpecial then
-					hypThreshold = real_hypnotist_chance
-				end
-				if ts == GetConVar("ttt_vampire_required_traitors"):GetInt() - 1 and vampireEnabled and not hasSpecial then
-					vamThreshold = hypThreshold + real_vampire_chance
-				end
-				if ts == GetConVar("ttt_assassin_required_traitors"):GetInt() - 1 and assassinEnabled and not hasSpecial then
-					assThreshold = vamThreshold + real_assassin_chance
-				end
+					if hypnotistEnabled then
+						hypThreshold = real_hypnotist_chance
+					end
+					if vampireEnabled then
+						vamThreshold = hypThreshold + real_vampire_chance
+					end
+					if assassinEnabled then
+						assThreshold = vamThreshold + real_assassin_chance
+					end
 
-				-- which number range if any is the random number in
-				if rand < hypThreshold then
-					print(pply:Nick() .. " (" .. pply:SteamID() .. ") - Hypnotist")
-					pply:SetRole(ROLE_HYPNOTIST)
-					hasSpecial = true
-				elseif rand < vamThreshold then
-					print(pply:Nick() .. " (" .. pply:SteamID() .. ") - Vampire")
-					pply:SetRole(ROLE_VAMPIRE)
-					hasSpecial = true
-				elseif rand < assThreshold then
-					print(pply:Nick() .. " (" .. pply:SteamID() .. ") - Assassin")
-					pply:SetRole(ROLE_ASSASSIN)
-					hasSpecial = true
+					-- which number range if any is the random number in
+					if rand < hypThreshold then
+						print(pply:Nick() .. " (" .. pply:SteamID() .. ") - Hypnotist")
+						pply:SetRole(ROLE_HYPNOTIST)
+						hasSpecial = true
+					elseif rand < vamThreshold then
+						print(pply:Nick() .. " (" .. pply:SteamID() .. ") - Vampire")
+						pply:SetRole(ROLE_VAMPIRE)
+						hasSpecial = true
+					elseif rand < assThreshold then
+						print(pply:Nick() .. " (" .. pply:SteamID() .. ") - Assassin")
+						pply:SetRole(ROLE_ASSASSIN)
+						hasSpecial = true
+					else
+						pply:SetRole(ROLE_TRAITOR)
+						print(pply:Nick() .. " (" .. pply:SteamID() .. ") - Traitor")
+					end
 				else
-					print(pply:Nick() .. " (" .. pply:SteamID() .. ") - Traitor")
 					pply:SetRole(ROLE_TRAITOR)
+					print(pply:Nick() .. " (" .. pply:SteamID() .. ") - Traitor")
 				end
 
 				table.remove(choices, pick)

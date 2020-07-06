@@ -1139,13 +1139,12 @@ function SelectRoles()
 	local zombie_chance = GetConVar("ttt_zombie_chance"):GetFloat()
 
 	local hypnotist_chance = GetConVar("ttt_hypnotist_chance"):GetFloat()
-	local real_hypnotist_chance = hypnotist_chance / (1 - zombie_chance)
-
 	local vampire_chance = GetConVar("ttt_vampire_chance"):GetFloat()
-	local real_vampire_chance = vampire_chance / ((1 - zombie_chance) * (1 - real_hypnotist_chance))
-
 	local assassin_chance = GetConVar("ttt_assassin_chance"):GetFloat()
-	local real_assassin_chance = assassin_chance / ((1 - zombie_chance) * (1 - real_hypnotist_chance) * (1 - real_vampire_chance))
+
+	local real_hypnotist_chance = hypnotist_chance
+	local real_vampire_chance = vampire_chance / (1 - real_hypnotist_chance)
+	local real_assassin_chance = assassin_chance / ((1 - real_hypnotist_chance) * (1 - real_vampire_chance))
 
 	local jester_chance = GetConVar("ttt_jester_chance"):GetFloat()
 	local real_jester_chance = jester_chance

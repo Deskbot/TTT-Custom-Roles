@@ -6,6 +6,7 @@ Adds a bunch of new roles to the Garry's Mod TTT game mode.
 ## Differences to the [original by NoxxFlame](https://github.com/NoxxFlame/TTT-Custom-Roles).
 
 - Fixes bugs that cause the chance of many roles to be wrong. They should now operate how you would expect.
+- Allows a Glitch and a special traitor role to be in the game at the same time.
 
 ### Special Thanks:
 

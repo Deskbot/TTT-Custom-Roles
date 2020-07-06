@@ -1237,21 +1237,12 @@ function SelectRoles()
 	local hasTraitor = false
 	local hasZombie = false
 	local hasSpecial = false
-	local hasJester = false
+	local hasIndependent = false
 	local hasMercenary = false
 	local hasPhantom = false
 	local hasGlitch = false
 	local hasDetective = false
 	local hasKiller = false
-
-	if #choices == 3 then
-		hasDetective = true
-		hasJester = true
-	end
-
-	if #choices == 5 then
-		hasJester = true
-	end
 
 	print("-----CHECKING EXTERNALLY CHOSEN ROLES-----")
 	for k, v in pairs(player.GetAll()) do
@@ -1286,13 +1277,13 @@ function SelectRoles()
 					hasSpecial = true
 					print(v:Nick() .. " (" .. v:SteamID() .. ") - Assassin")
 				elseif role == ROLE_JESTER then
-					hasJester = true
+					hasIndependent = true
 					print(v:Nick() .. " (" .. v:SteamID() .. ") - Jester")
 				elseif role == ROLE_SWAPPER then
-					hasJester = true
+					hasIndependent = true
 					print(v:Nick() .. " (" .. v:SteamID() .. ") - Swapper")
 				elseif role == ROLE_KILLER then
-					hasKiller = true
+					hasIndependent = true
 					print(v:Nick() .. " (" .. v:SteamID() .. ") - Killer")
 				elseif role == ROLE_DETECTIVE then
 					ds = ds + 1
@@ -1427,33 +1418,35 @@ function SelectRoles()
 		end
 	end
 
-	if jesterEnabled and math.random() <= real_jester_chance and not hasJester and not hasKiller then
-		local pick = math.random(1, #choices)
-		local pply = choices[pick]
-		if IsValid(pply) then
-			print(pply:Nick() .. " (" .. pply:SteamID() .. ") - Jester")
-			pply:SetRole(ROLE_JESTER)
-			hasJester = true
+	if not hasIndependent then
+		if jesterEnabled and math.random() <= real_jester_chance then
+			local pick = math.random(1, #choices)
+			local pply = choices[pick]
+			if IsValid(pply) then
+				print(pply:Nick() .. " (" .. pply:SteamID() .. ") - Jester")
+				pply:SetRole(ROLE_JESTER)
+				hasIndependent = true
+			end
+			table.remove(choices, pick)
+		elseif swapperEnabled and math.random() <= real_swapper_chance then
+			local pick = math.random(1, #choices)
+			local pply = choices[pick]
+			if IsValid(pply) then
+				print(pply:Nick() .. " (" .. pply:SteamID() .. ") - Swapper")
+				pply:SetRole(ROLE_SWAPPER)
+				hasIndependent = true
+			end
+			table.remove(choices, pick)
+		elseif killerEnabled and math.random() <= real_killer_chance then
+			local pick = math.random(1, #choices)
+			local pply = choices[pick]
+			if IsValid(pply) then
+				print(pply:Nick() .. " (" .. pply:SteamID() .. ") - Killer")
+				pply:SetRole(ROLE_KILLER)
+				hasIndependent = true
+			end
+			table.remove(choices, pick)
 		end
-		table.remove(choices, pick)
-	elseif swapperEnabled and math.random() <= real_swapper_chance and not hasJester and not hasKiller then
-		local pick = math.random(1, #choices)
-		local pply = choices[pick]
-		if IsValid(pply) then
-			print(pply:Nick() .. " (" .. pply:SteamID() .. ") - Swapper")
-			pply:SetRole(ROLE_SWAPPER)
-			hasJester = true
-		end
-		table.remove(choices, pick)
-	elseif killerEnabled and math.random() <= real_killer_chance and not hasJester and not hasKiller then
-		local pick = math.random(1, #choices)
-		local pply = choices[pick]
-		if IsValid(pply) then
-			print(pply:Nick() .. " (" .. pply:SteamID() .. ") - Killer")
-			pply:SetRole(ROLE_KILLER)
-			hasKiller = true
-		end
-		table.remove(choices, pick)
 	end
 
 	if GetConVar("ttt_mercenary_enabled"):GetInt() == 1 and #choices >= GetConVar("ttt_mercenary_required_innos"):GetInt() and math.random() <= real_mercenary_chance and not hasMercenary then

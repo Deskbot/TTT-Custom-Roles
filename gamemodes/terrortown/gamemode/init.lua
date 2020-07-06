@@ -1142,6 +1142,20 @@ function SelectRoles()
 	local vampireEnabled = GetConVar("ttt_vampire_enabled"):GetInt() == 1
 	local assassinEnabled = GetConVar("ttt_assassin_enabled"):GetInt() == 1
 
+	local hypReqTraitors = GetConVar("ttt_hypnotist_required_traitors"):GetInt()
+	local vamReqTraitors = GetConVar("ttt_vampire_required_traitors"):GetInt()
+	local assReqTraitors = GetConVar("ttt_assassin_required_traitors"):GetInt()
+
+	if hypReqTraitors > traitor_count then
+		hypnotistEnabled = false
+	end
+	if vamReqTraitors > traitor_count then
+		vampireEnabled = false
+	end
+	if assReqTraitors > traitor_count then
+		assassinEnabled = false
+	end
+
 	local hypnotist_chance = GetConVar("ttt_hypnotist_chance"):GetFloat()
 	local vampire_chance = GetConVar("ttt_vampire_chance"):GetFloat()
 	local assassin_chance = GetConVar("ttt_assassin_chance"):GetFloat()

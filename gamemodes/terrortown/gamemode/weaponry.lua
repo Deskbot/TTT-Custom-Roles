@@ -402,9 +402,19 @@ local function OrderEquipment(ply, cmd, args)
 		end
 	elseif swep_table then
 		-- weapon whitelist check
-		if not table.HasValue(swep_table.CanBuy, ply:GetRole()) then
-			print(ply, "tried to buy weapon his role is not permitted to buy")
-			return
+
+		local role = ply:GetRole()
+		local inheritWeaponsFromRole = roleInheritsWeaponsFromRole(role)
+
+		if not table.HasValue(swep_table.CanBuy, role) then
+			-- there are no other weapons this role can buy
+			-- or the role inheriting weapons from can't buy it either
+			if inheritWeaponsFromRole == nil
+				or not table.HasValue(swep_table.CanBuy, inheritWeaponsFromRole)
+			then
+				print(ply, "tried to buy weapon his role is not permitted to buy")
+				return
+			end
 		end
 
 		-- if we have a pending order because we are in a confined space, don't

@@ -6,6 +6,7 @@ Adds a bunch of new roles to the Garry's Mod TTT game mode.
 ## Differences to the [original by NoxxFlame](https://github.com/NoxxFlame/TTT-Custom-Roles).
 
 - Fixes a bug that sometimes causes a searched player to not have their alignment shown in the scoreboard table.
+- Gives Assassins and Vampires access to custom traitor shop items.
 - All players are notified in the chat when config settings are changed that relate to roles and game rules. Notably this includes role likelihoods and conditions for roles to be enabled.
 - Config defaults have been altered. Notably `ttt_detective_search_only` defaults to `0`.
 - Fixes a bug that causes detectives to not spawn with claws when turned into a Zombie.

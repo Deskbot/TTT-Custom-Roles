@@ -22,16 +22,29 @@ include("favorites_db.lua")
 -- Buyable weapons are loaded automatically. Buyable items are defined in
 -- equip_items_shd.luaslotnumber
 
-local Equipment = niltr
+local Equipment = {}
 function GetEquipmentForRole(role)
 	-- need to build equipment cache?
-	if not Equipment then
+	if not Equipment[role] then
 		-- start with all the non-weapon goodies
 		local tbl = table.Copy(EquipmentItems)
 
 		-- find buyable weapons to load info from
 		for k, v in pairs(weapons.GetList()) do
 			if v and v.CanBuy then
+				local inheritWeaponsFromRole = roleInheritsWeaponsFromRole(role)
+
+				-- If the role inherits weapons from another role
+                if inheritWeaponsFromRole != nil
+                    -- and they can't already buy this weapon
+                    and not table.HasValue(v.CanBuy, role)
+                    -- and the inherited role can buy the weapon
+					and table.HasValue(v.CanBuy, inheritWeaponsFromRole)
+				then
+					print(role, v.PrintName)
+                    table.insert(v.CanBuy, role)
+				end
+
 				local data = v.EquipMenuData or {}
 				local base = {
 					id = WEPS.GetClass(v),
@@ -71,7 +84,7 @@ function GetEquipmentForRole(role)
 			end
 		end
 
-		Equipment = tbl
+		Equipment[role] = tbl[role]
 	end
 
 	return Equipment and Equipment[role] or {}

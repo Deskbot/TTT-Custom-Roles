@@ -298,3 +298,13 @@ DefaultEquipment = {
 		"weapon_ttt_glock"
 	}
 };
+
+function roleInheritsWeaponsFromRole(role)
+	local inheritWeaponsFromRole = nil
+
+	if role == ROLE_ASSASSIN or role == ROLE_VAMPIRE then
+		inheritWeaponsFromRole = ROLE_TRAITOR
+	end
+
+	return inheritWeaponsFromRole
+end

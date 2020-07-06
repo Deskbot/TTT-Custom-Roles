@@ -1188,7 +1188,6 @@ function SelectRoles()
 	local real_killer_chance = killer_chance / numIndependentRolesEnabled
 
 	local glitch_chance = GetConVar("ttt_glitch_chance"):GetFloat()
-	local real_glitch_chance = glitch_chance / (1 - hypnotist_chance - vampire_chance - assassin_chance)
 
 	local phantom_chance = GetConVar("ttt_phantom_chance"):GetFloat()
 	local real_phantom_chance = phantom_chance
@@ -1424,7 +1423,7 @@ function SelectRoles()
 			hasPhantom = true
 		end
 	end
-	if GetConVar("ttt_glitch_enabled"):GetInt() == 1 and #choices >= GetConVar("ttt_glitch_required_innos"):GetInt() and math.random() <= real_glitch_chance and not hasSpecial and not hasGlitch and ts > 1 then
+	if GetConVar("ttt_glitch_enabled"):GetInt() == 1 and #choices >= GetConVar("ttt_glitch_required_innos"):GetInt() and math.random() <= glitch_chance and not hasSpecial and not hasGlitch and ts > 1 then
 		local pick = math.random(1, #choices)
 		local pply = choices[pick]
 		if IsValid(pply) then

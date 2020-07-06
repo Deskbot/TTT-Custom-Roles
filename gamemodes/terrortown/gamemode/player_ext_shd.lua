@@ -36,6 +36,10 @@ function plymeta:GetAssassin() return self:GetRole() == ROLE_ASSASSIN end
 
 function plymeta:GetKiller() return self:GetRole() == ROLE_KILLER end
 
+function plymeta:IsTraitorTeam()
+	return self:IsTraitor() or self:IsZombie() or self:IsHypnotist() or self:IsVampire() or self:IsAssassin()
+end
+
 plymeta.IsTraitor = plymeta.GetTraitor
 plymeta.IsDetective = plymeta.GetDetective
 plymeta.IsMercenary = plymeta.GetMercenary

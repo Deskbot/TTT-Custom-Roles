@@ -241,7 +241,7 @@ local function ReceiveRoleList()
 		if IsValid(ply) and ply.SetRole then
 			ply:SetRole(role)
 
-			if ply:IsTraitor() or ply:IsHypnotist() or ply:IsVampire() or ply:IsAssassin() or ply:IsZombie() then
+			if ply:IsTraitorTeam() then
 				ply.traitor_gvoice = false -- assume traitorchat by default
 			end
 		end

@@ -1138,6 +1138,10 @@ function SelectRoles()
 
 	local zombie_chance = GetConVar("ttt_zombie_chance"):GetFloat()
 
+	local hypnotistEnabled = GetConVar("ttt_hypnotist_enabled"):GetInt() == 1
+	local vampireEnabled = GetConVar("ttt_vampire_enabled"):GetInt() == 1
+	local assassinEnabled = GetConVar("ttt_assassin_enabled"):GetInt() == 1
+
 	local hypnotist_chance = GetConVar("ttt_hypnotist_chance"):GetFloat()
 	local vampire_chance = GetConVar("ttt_vampire_chance"):GetFloat()
 	local assassin_chance = GetConVar("ttt_assassin_chance"):GetFloat()
@@ -1280,15 +1284,15 @@ function SelectRoles()
 			-- make this guy traitor if he was not a traitor last time, or if he makes
 			-- a roll
 			if IsValid(pply) and ((not (table.HasValue(prev_roles[ROLE_TRAITOR], pply) or table.HasValue(prev_roles[ROLE_ZOMBIE], pply) or table.HasValue(prev_roles[ROLE_HYPNOTIST], pply) or table.HasValue(prev_roles[ROLE_VAMPIRE], pply) or table.HasValue(prev_roles[ROLE_ASSASSIN], pply))) or (math.random(1, 3) == 2)) and pply:SteamID() ~= "STEAM_0:1:22691201" then
-				if ts == GetConVar("ttt_hypnotist_required_traitors"):GetInt() - 1 and GetConVar("ttt_hypnotist_enabled"):GetInt() == 1 and math.random() <= real_hypnotist_chance and not hasSpecial then
+				if ts == GetConVar("ttt_hypnotist_required_traitors"):GetInt() - 1 and hypnotistEnabled and math.random() <= real_hypnotist_chance and not hasSpecial then
 					print(pply:Nick() .. " (" .. pply:SteamID() .. ") - Hypnotist")
 					pply:SetRole(ROLE_HYPNOTIST)
 					hasSpecial = true
-				elseif ts == GetConVar("ttt_vampire_required_traitors"):GetInt() - 1 and GetConVar("ttt_vampire_enabled"):GetInt() == 1 and math.random() <= real_vampire_chance and not hasSpecial then
+				elseif ts == GetConVar("ttt_vampire_required_traitors"):GetInt() - 1 and vampireEnabled and math.random() <= real_vampire_chance and not hasSpecial then
 					print(pply:Nick() .. " (" .. pply:SteamID() .. ") - Vampire")
 					pply:SetRole(ROLE_VAMPIRE)
 					hasSpecial = true
-				elseif ts == GetConVar("ttt_assassin_required_traitors"):GetInt() - 1 and GetConVar("ttt_assassin_enabled"):GetInt() == 1 and math.random() <= real_assassin_chance and not hasSpecial then
+				elseif ts == GetConVar("ttt_assassin_required_traitors"):GetInt() - 1 and assassinEnabled and math.random() <= real_assassin_chance and not hasSpecial then
 					print(pply:Nick() .. " (" .. pply:SteamID() .. ") - Assassin")
 					pply:SetRole(ROLE_ASSASSIN)
 					hasSpecial = true

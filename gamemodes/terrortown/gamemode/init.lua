@@ -1146,9 +1146,22 @@ function SelectRoles()
 	local vampire_chance = GetConVar("ttt_vampire_chance"):GetFloat()
 	local assassin_chance = GetConVar("ttt_assassin_chance"):GetFloat()
 
-	local real_hypnotist_chance = hypnotist_chance
-	local real_vampire_chance = vampire_chance / (1 - real_hypnotist_chance)
-	local real_assassin_chance = assassin_chance / ((1 - real_hypnotist_chance) * (1 - real_vampire_chance))
+	-- sum of percentages of enabled special traitor roles
+	local numTraitorRolesEnabled = 0
+
+	if hypnotistEnabled then
+		numTraitorRolesEnabled = numTraitorRolesEnabled + 1
+	end
+	if vampireEnabled then
+		numTraitorRolesEnabled = numTraitorRolesEnabled + 1
+	end
+	if assassinEnabled then
+		numTraitorRolesEnabled = numTraitorRolesEnabled + 1
+	end
+
+	local real_hypnotist_chance = hypnotist_chance / numTraitorRolesEnabled
+	local real_vampire_chance = vampire_chance / numTraitorRolesEnabled
+	local real_assassin_chance = assassin_chance / numTraitorRolesEnabled
 
 	local jester_chance = GetConVar("ttt_jester_chance"):GetFloat()
 	local real_jester_chance = jester_chance

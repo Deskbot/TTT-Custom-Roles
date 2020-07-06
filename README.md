@@ -5,6 +5,7 @@ Adds a bunch of new roles to the Garry's Mod TTT game mode.
 
 ## Differences to the [original by NoxxFlame](https://github.com/NoxxFlame/TTT-Custom-Roles).
 
+- Every traitor role starts with the same number of credits as configured by the existing command (`ttt_credits_starting`).
 
 ### Special Thanks:
 

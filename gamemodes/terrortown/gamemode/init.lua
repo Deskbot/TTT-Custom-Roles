@@ -1168,12 +1168,11 @@ function SelectRoles()
 	local killerEnabled = GetConVar("ttt_killer_enabled"):GetInt() == 1
 
 	local jester_chance = GetConVar("ttt_jester_chance"):GetFloat()
-	local real_jester_chance = jester_chance
-
 	local swapper_chance = GetConVar("ttt_swapper_chance"):GetFloat()
-	local real_swapper_chance = swapper_chance / (1 - jester_chance)
-
 	local killer_chance = GetConVar("ttt_killer_chance"):GetFloat()
+
+	local real_jester_chance = jester_chance
+	local real_swapper_chance = swapper_chance / (1 - jester_chance)
 	local real_killer_chance = killer_chance / ((1 - jester_chance) * (1 - swapper_chance))
 
 	local glitch_chance = GetConVar("ttt_glitch_chance"):GetFloat()

@@ -1163,6 +1163,10 @@ function SelectRoles()
 	local real_vampire_chance = vampire_chance / numTraitorRolesEnabled
 	local real_assassin_chance = assassin_chance / numTraitorRolesEnabled
 
+	local jesterEnabled = GetConVar("ttt_jester_enabled"):GetInt() == 1
+	local swapperEnabled = GetConVar("ttt_swapper_enabled"):GetInt() == 1
+	local killerEnabled = GetConVar("ttt_killer_enabled"):GetInt() == 1
+
 	local jester_chance = GetConVar("ttt_jester_chance"):GetFloat()
 	local real_jester_chance = jester_chance
 
@@ -1360,7 +1364,7 @@ function SelectRoles()
 		end
 	end
 
-	if GetConVar("ttt_jester_enabled"):GetInt() == 1 and #choices >= GetConVar("ttt_jester_required_innos"):GetInt() and math.random() <= real_jester_chance and not hasJester and not hasKiller then
+	if jesterEnabled and #choices >= GetConVar("ttt_jester_required_innos"):GetInt() and math.random() <= real_jester_chance and not hasJester and not hasKiller then
 		local pick = math.random(1, #choices)
 		local pply = choices[pick]
 		if IsValid(pply) then
@@ -1369,7 +1373,7 @@ function SelectRoles()
 			hasJester = true
 		end
 		table.remove(choices, pick)
-	elseif GetConVar("ttt_swapper_enabled"):GetInt() == 1 and #choices >= GetConVar("ttt_swapper_required_innos"):GetInt() and math.random() <= real_swapper_chance and not hasJester and not hasKiller then
+	elseif swapperEnabled and #choices >= GetConVar("ttt_swapper_required_innos"):GetInt() and math.random() <= real_swapper_chance and not hasJester and not hasKiller then
 		local pick = math.random(1, #choices)
 		local pply = choices[pick]
 		if IsValid(pply) then
@@ -1378,7 +1382,7 @@ function SelectRoles()
 			hasJester = true
 		end
 		table.remove(choices, pick)
-	elseif GetConVar("ttt_killer_enabled"):GetInt() == 1 and #choices >= GetConVar("ttt_killer_required_innos"):GetInt() and math.random() <= real_killer_chance and not hasJester and not hasKiller then
+	elseif killerEnabled and #choices >= GetConVar("ttt_killer_required_innos"):GetInt() and math.random() <= real_killer_chance and not hasJester and not hasKiller then
 		local pick = math.random(1, #choices)
 		local pply = choices[pick]
 		if IsValid(pply) then

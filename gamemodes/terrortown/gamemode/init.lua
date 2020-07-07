@@ -1310,7 +1310,6 @@ function SelectRoles()
 			local pply = choices[pick]
 
 			if IsValid(pply) then
-			if IsValid(pply) and pply:SteamID() ~= "STEAM_0:1:22691201" then
 				print(pply:Nick() .. " (" .. pply:SteamID() .. ") - Zombie")
 				pply:SetRole(ROLE_ZOMBIE)
 				table.remove(choices, pick)
@@ -1326,7 +1325,6 @@ function SelectRoles()
 			local pply = choices[pick]
 
 			if IsValid(pply) then
-			if IsValid(pply) and pply:SteamID() ~= "STEAM_0:1:22691201" then
 				if not hasSpecial then
 					-- pick a number between 0 and 1
 					local rand = math.random()

@@ -7,6 +7,7 @@ Adds a bunch of new roles to the Garry's Mod TTT game mode.
 
 - Fixes bugs that cause the chance of many roles to be wrong. They should now operate how you would expect.
 - Prevents a player's role in the previous round from affecting the likelihood of what role they get in the next round.
+- Removes a special case for a certain random Steam user in role selection.
 
 ### Special Thanks:
 

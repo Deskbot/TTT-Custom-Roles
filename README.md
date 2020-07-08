@@ -9,7 +9,6 @@ Adds a bunch of new roles to the Garry's Mod TTT game mode.
 - Gives Assassins and Vampires access to custom traitor shop items.
 - Every traitor role starts with the same number of credits as configured by the existing command (`ttt_credits_starting`).
 - Fixes bugs that cause the chance of many roles to be wrong. They should now operate how you would expect.
-- Allows a Glitch and a special traitor role to be in the game at the same time.
 - All players are notified in the chat when config settings are changed that relate to roles and game rules. Notably this includes role likelihoods and conditions for roles to be enabled.
 - Config defaults have been altered. Notably `ttt_detective_search_only` defaults to `0`.
 - Fixes a bug that causes detectives to not spawn with claws when turned into a Zombie.

@@ -128,6 +128,7 @@ CreateConVar("ttt_det_credits_starting", "1")
 CreateConVar("ttt_det_credits_traitorkill", "0")
 CreateConVar("ttt_det_credits_traitordead", "1")
 
+-- Independent credits
 CreateConVar("ttt_mer_credits_starting", "1")
 CreateConVar("ttt_kil_credits_starting", "2")
 

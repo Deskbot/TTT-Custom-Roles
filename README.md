@@ -5,7 +5,7 @@ Adds a bunch of new roles to the Garry's Mod TTT game mode.
 
 ## Differences to the [original by NoxxFlame](https://github.com/NoxxFlame/TTT-Custom-Roles).
 
-- Every traitor role starts with the same number of credits as configured by the existing command (`ttt_credits_starting`).
+- The number of starting credits for all traitor roles and zombies are independently configurable with these commands: `ttt_credits_starting`, `ttt_assassin_credits_starting`, `ttt_hypnotist_credits_starting`, `ttt_vampire_credits_starting`, `ttt_zombie_credits_starting`.
 
 ### Special Thanks:
 
@@ -191,6 +191,10 @@ ttt_karma_jester_ratio       0.5  // (Default: 0.5): Ratio of damage to Jesters,
 
 // Other
 ttt_zombie_pct              0.25 // (Default: 0.25): Percentage of total players that will be a Zombie
+ttt_assassin_credits_starting  2 // Number of credits the assassin starts with
+ttt_hypnotist_credits_starting 2 // Number of credits the hypnotist starts with
+ttt_vampire_credits_starting   2 // Number of credits the vampire starts with
+ttt_zombie_credits_starting    2 // Number of credits the zombie starts with
 ttt_mer_credits_starting    1    // (Default: 1): Number of credits the Mercenary starts with
 ttt_kil_credits_starting    2    // (Default: 2): Number of credits the Killer starts with
 ttt_detective_search_only   1    // (Default: 1): Whether only detectives can search bodies or not

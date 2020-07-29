@@ -116,6 +116,11 @@ CreateConVar("ttt_zombie_pct", "0.33")
 
 -- Traitor credits
 CreateConVar("ttt_credits_starting", "2")
+CreateConVar("ttt_assassin_credits_starting", "2", FCVAR_NOTIFY)
+CreateConVar("ttt_hypnotist_credits_starting", "2", FCVAR_NOTIFY)
+CreateConVar("ttt_vampire_credits_starting", "2", FCVAR_NOTIFY)
+CreateConVar("ttt_zombie_credits_starting", "2", FCVAR_NOTIFY)
+
 CreateConVar("ttt_credits_award_pct", "0.35")
 CreateConVar("ttt_credits_award_size", "1")
 CreateConVar("ttt_credits_award_repeat", "1")

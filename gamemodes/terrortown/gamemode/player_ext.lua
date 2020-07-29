@@ -63,13 +63,32 @@ end
 
 function plymeta:SubtractCredits(amt) self:AddCredits(-amt) end
 
+function getCreditsForRole(role)
+	local c
+
+	if role == ROLE_ASSASSIN then
+		c = GetConVarNumber("ttt_assassin_credits_starting")
+	elseif role == ROLE_HYPNOTIST then
+		c = GetConVarNumber("ttt_hypnotist_credits_starting")
+	elseif role == ROLE_VAMPIRE then
+		c = GetConVarNumber("ttt_vampire_credits_starting")
+	elseif role == ROLE_ZOMBIE then
+		c = GetConVarNumber("ttt_zombie_credits_starting")
+	else
+		-- ordinary traitors and any future roles on the traitor team
+		c = GetConVarNumber("ttt_credits_starting")
+	end
+
+	if CountTraitors() == 1 then
+		c = c + GetConVarNumber("ttt_credits_alonebonus")
+	end
+
+	return math.ceil(c)
+end
+
 function plymeta:SetDefaultCredits()
 	if self:IsTraitorTeam() then
-		local c = GetConVarNumber("ttt_credits_starting")
-		if CountTraitors() == 1 then
-			c = c + GetConVarNumber("ttt_credits_alonebonus")
-		end
-		self:SetCredits(math.ceil(c))
+		self:SetCredits(getCreditsForRole(self:GetRole()))
 	elseif self:GetDetective() then
 		self:SetCredits(math.ceil(GetConVarNumber("ttt_det_credits_starting")))
 	elseif self:GetMercenary() then

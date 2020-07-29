@@ -7,7 +7,7 @@ Adds a bunch of new roles to the Garry's Mod TTT game mode.
 
 - Fixes a bug that sometimes causes a searched player to not have their alignment shown in the scoreboard table.
 - Gives Assassins and Vampires access to custom traitor shop items.
-- Every traitor role starts with the same number of credits as configured by the existing command (`ttt_credits_starting`).
+- The number of starting credits for all traitor roles and zombies are independently configurable with these commands: `ttt_credits_starting`, `ttt_assassin_credits_starting`, `ttt_hypnotist_credits_starting`, `ttt_vampire_credits_starting`, `ttt_zombie_credits_starting`.
 - Fixes bugs that cause the chance of many roles to be wrong. They should now operate how you would expect.
 - All players are notified in the chat when config settings are changed that relate to roles and game rules. Notably this includes role likelihoods and conditions for roles to be enabled.
 - Config defaults have been altered. Notably `ttt_detective_search_only` defaults to `0`.
@@ -205,6 +205,10 @@ ttt_karma_jester_ratio        0.5 // Ratio of damage to Jesters, to be taken fro
 // Other
 ttt_zombie_pct              0.2  // Percentage of total players that will be a Zombie
 ttt_detective_search_only   0    // Whether only detectives can search bodies or not
+ttt_assassin_credits_starting  2 // Number of credits the assassin starts with
+ttt_hypnotist_credits_starting 2 // Number of credits the hypnotist starts with
+ttt_vampire_credits_starting   2 // Number of credits the vampire starts with
+ttt_zombie_credits_starting    2 // Number of credits the zombie starts with
 ttt_mer_credits_starting    1    // Number of credits the Mercenary starts with
 ttt_kil_credits_starting    2    // Number of credits the Killer starts with
 ttt_independent_warning     0    // At the start of the round, if there is a Jester, Swapper, or Killer, all players are warned that there is an "independent player".

@@ -1194,9 +1194,7 @@ function SelectRoles()
 	local vampire_chance = GetConVar("ttt_vampire_chance"):GetFloat()
 	local assassin_chance = GetConVar("ttt_assassin_chance"):GetFloat()
 
-	-- sum of percentages of enabled special traitor roles
 	local numTraitorRolesEnabled = 0
-
 	if hypnotistEnabled then
 		numTraitorRolesEnabled = numTraitorRolesEnabled + 1
 	end

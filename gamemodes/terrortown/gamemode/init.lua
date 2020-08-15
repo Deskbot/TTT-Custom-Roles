@@ -748,6 +748,87 @@ local function InitRoundEndTime()
 	SetRoundEnd(endtime)
 end
 
+local function PrintRoleSummary(
+	playerCount,
+	traitorCount,
+	detectiveCount,
+	assassinChance,
+	vampireChance,
+	hypnotistChance,
+	zombieChance,
+	glitchChance,
+	mercenaryChance,
+	phantomChance,
+	killerChance,
+	jesterChance,
+	swapperChance
+)
+	-- player count
+	local message = Format("Players: %d, Traitors: %d\n", playerCount, traitorCount)
+
+	-- zombie%
+	if zombieChance > 0 then
+		message = message .. Format("Zombie Round: %d%%\n", zombieChance * 100)
+	end
+
+	-- detective count
+	if detectiveCount > 0 then
+		message = message .. Format("Detectives: %d\n", detectiveCount)
+	end
+
+	-- glitch% merc% phantom%
+	local specialInnocents = {}
+	if glitchChance > 0 then
+		table.insert(specialInnocents , Format("Glitch: %d%%", glitchChance * 100))
+	end
+	if mercenaryChance > 0 then
+		table.insert(specialInnocents , Format("Mercenary: %d%%", mercenaryChance * 100))
+	end
+	if phantomChance > 0 then
+		table.insert(specialInnocents , Format("Phantom: %d%%", phantomChance * 100))
+	end
+	if #specialInnocents > 0 then
+		message = message .. table.concat(specialInnocents, ", ") .. "\n"
+	end
+
+	-- assassin% vampire% hypnotist%
+	local specialTraitors = {}
+	if assassinChance > 0 then
+		table.insert(specialTraitors, Format("Assassin: %d%%", assassinChance * 100))
+	end
+	if vampireChance > 0 then
+		table.insert(specialTraitors, Format("Vampire: %d%%", vampireChance * 100))
+	end
+	if hypnotistChance > 0 then
+		table.insert(specialTraitors, Format("Hypnotist: %d%%", hypnotistChance * 100))
+	end
+	if #specialTraitors > 0 then
+		message = message .. table.concat(specialTraitors, ", ") .. "\n"
+	end
+
+	-- killer% jester% swapper%
+	local independents = {}
+	if killerChance > 0 then
+		table.insert(independents, Format("Killer: %d%%", killerChance * 100))
+	end
+	if jesterChance > 0 then
+		table.insert(independents, Format("Jester: %d%%", jesterChance * 100))
+	end
+	if swapperChance > 0 then
+		table.insert(independents, Format("Swapper: %d%%", swapperChance * 100))
+	end
+	if #independents > 0 then
+		message = message .. table.concat(independents, ", ") .. "\n"
+	end
+
+	-- tell all players
+	for k, ply in pairs(player.GetAll()) do
+		if IsValid(ply) then
+			ply:PrintMessage(HUD_PRINTTALK, message)
+		end
+	end
+end
+
 function BeginRound()
 	GAMEMODE:SyncGlobals()
 
@@ -1176,6 +1257,8 @@ function SelectRoles()
 	local real_vampire_chance = vampire_chance / numTraitorRolesEnabled
 	local real_assassin_chance = assassin_chance / numTraitorRolesEnabled
 
+	local zombieEnabled = GetConVar("ttt_zombie_enabled"):GetInt() == 1
+
 	local jesterEnabled = GetConVar("ttt_jester_enabled"):GetInt() == 1
 	local swapperEnabled = GetConVar("ttt_swapper_enabled"):GetInt() == 1
 	local killerEnabled = GetConVar("ttt_killer_enabled"):GetInt() == 1
@@ -1213,14 +1296,6 @@ function SelectRoles()
 	local real_jester_chance = jester_chance / numIndependentRolesEnabled
 	local real_swapper_chance = swapper_chance / numIndependentRolesEnabled
 	local real_killer_chance = killer_chance / numIndependentRolesEnabled
-
-	local glitch_chance = GetConVar("ttt_glitch_chance"):GetFloat()
-
-	local phantom_chance = GetConVar("ttt_phantom_chance"):GetFloat()
-	local real_phantom_chance = phantom_chance
-
-	local mercenary_chance = GetConVar("ttt_mercenary_chance"):GetFloat()
-	local real_mercenary_chance = mercenary_chance
 
 	if choice_count == 0 then return end
 
@@ -1301,7 +1376,7 @@ function SelectRoles()
 	end
 
 	print("-----RANDOMLY PICKING REMAINING ROLES-----")
-	if (GetConVar("ttt_zombie_enabled"):GetInt() == 1 and math.random() <= zombie_chance and not hasTraitor and not hasSpecial) or hasZombie then
+	if (zombieEnabled and math.random() <= zombie_chance and not hasTraitor and not hasSpecial) or hasZombie then
 		while ts < zombie_count and #choices > 0 do
 			-- select random index in choices table
 			local pick = math.random(1, #choices)
@@ -1467,7 +1542,11 @@ function SelectRoles()
 		end
 	end
 
-	if GetConVar("ttt_mercenary_enabled"):GetInt() == 1 and #choices >= GetConVar("ttt_mercenary_required_innos"):GetInt() and math.random() <= real_mercenary_chance and not hasMercenary then
+	local mercenary_chance = GetConVar("ttt_mercenary_chance"):GetFloat()
+	local mercenaryEnabled = GetConVar("ttt_mercenary_enabled"):GetInt() == 1
+		and #choices >= GetConVar("ttt_mercenary_required_innos"):GetInt()
+
+	if mercenaryEnabled and math.random() <= mercenary_chance and not hasMercenary then
 		local pick = math.random(1, #choices)
 		local pply = choices[pick]
 		if IsValid(pply) then
@@ -1477,7 +1556,12 @@ function SelectRoles()
 			hasMercenary = true
 		end
 	end
-	if GetConVar("ttt_phantom_enabled"):GetInt() == 1 and #choices >= GetConVar("ttt_phantom_required_innos"):GetInt() and math.random() <= real_phantom_chance and not hasPhantom then
+
+	local phantom_chance = GetConVar("ttt_phantom_chance"):GetFloat()
+	local phantomEnabled = GetConVar("ttt_phantom_enabled"):GetInt() == 1
+		and #choices >= GetConVar("ttt_phantom_required_innos"):GetInt()
+
+	if phantomEnabled and math.random() <= phantom_chance and not hasPhantom then
 		local pick = math.random(1, #choices)
 		local pply = choices[pick]
 		if IsValid(pply) then
@@ -1487,7 +1571,12 @@ function SelectRoles()
 			hasPhantom = true
 		end
 	end
-	if GetConVar("ttt_glitch_enabled"):GetInt() == 1 and #choices >= GetConVar("ttt_glitch_required_innos"):GetInt() and math.random() <= glitch_chance and not hasSpecial and not hasGlitch and ts > 1 then
+
+	local glitch_chance = GetConVar("ttt_glitch_chance"):GetFloat()
+	local glitchEnabled = GetConVar("ttt_glitch_enabled"):GetInt() == 1
+		and #choices >= GetConVar("ttt_glitch_required_innos"):GetInt()
+
+	if glitchEnabled and math.random() <= glitch_chance and not hasSpecial and not hasGlitch and ts > 1 then
 		local pick = math.random(1, #choices)
 		local pply = choices[pick]
 		if IsValid(pply) then
@@ -1503,6 +1592,22 @@ function SelectRoles()
 		end
 	end
 	print("------------DONE PICKING ROLES------------")
+
+	PrintRoleSummary(
+		choice_count,
+		traitor_count,
+		ds,
+		assassinEnabled and real_assassin_chance or 0,
+		vampireEnabled and real_vampire_chance or 0,
+		hypnotistEnabled and real_hypnotist_chance or 0,
+		zombieEnabled and zombie_chance or 0,
+		glitchEnabled and glitch_chance or 0,
+		mercenaryEnabled and mercenary_chance or 0,
+		phantomEnabled and phantom_chance or 0,
+		killerEnabled and real_killer_chance or 0,
+		jesterEnabled and real_jester_chance or 0,
+		swapperEnabled and real_swapper_chance or 0
+	)
 
 	GAMEMODE.LastRole = {}
 

@@ -50,7 +50,7 @@ local sound_open = Sound("DoorHandles.Unlocked3")
 
 if SERVER then
 	CreateConVar("ttt_crowbar_unlocks", "1", FCVAR_ARCHIVE)
-	CreateConVar("ttt_crowbar_pushforce", "395", FCVAR_NOTIFY)
+	CreateConVar("ttt_crowbar_pushforce", "395", FCVAR_ARCHIVE + FCVAR_NOTIFY)
 end
 
 -- only open things that have a name (and are therefore likely to be meant to

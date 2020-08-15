@@ -47,7 +47,7 @@ SWEP.NoSights = true
 local delay_beamup = 0.5
 local delay_beamdown = 0.5
 
-local ttt_telefrags = CreateConVar("ttt_teleport_telefrags", "0")
+local ttt_telefrags = CreateConVar("ttt_teleport_telefrags", "0", FCVAR_ARCHIVE)
 
 function SWEP:SetTeleportMark(pos, ang)
 	self.teleport = { pos = pos, ang = ang }

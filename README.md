@@ -6,6 +6,7 @@ Adds a bunch of new roles to the Garry's Mod TTT game mode.
 ## Differences to the [original by NoxxFlame](https://github.com/NoxxFlame/TTT-Custom-Roles).
 
 - Fixes bugs that cause the chance of many roles to be wrong. They should now operate how you would expect.
+- A summary of the role settings is printed into the chat at the start of each round.
 
 ### Special Thanks:
 

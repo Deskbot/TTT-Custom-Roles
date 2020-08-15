@@ -59,106 +59,106 @@ include("player_ext.lua")
 include("player.lua")
 
 -- Round times
-CreateConVar("ttt_roundtime_minutes", "10", FCVAR_NOTIFY)
-CreateConVar("ttt_preptime_seconds", "20", FCVAR_NOTIFY)
-CreateConVar("ttt_posttime_seconds", "20", FCVAR_NOTIFY)
-CreateConVar("ttt_firstpreptime", "45", FCVAR_NOTIFY)
+CreateConVar("ttt_roundtime_minutes", "10", FCVAR_NOTIFY + FCVAR_ARCHIVE)
+CreateConVar("ttt_preptime_seconds", "20", FCVAR_NOTIFY + FCVAR_ARCHIVE)
+CreateConVar("ttt_posttime_seconds", "20", FCVAR_NOTIFY + FCVAR_ARCHIVE)
+CreateConVar("ttt_firstpreptime", "45", FCVAR_NOTIFY + FCVAR_ARCHIVE)
 
 -- Haste mode
-local ttt_haste = CreateConVar("ttt_haste", "1", FCVAR_NOTIFY)
-CreateConVar("ttt_haste_starting_minutes", "5", FCVAR_NOTIFY)
-CreateConVar("ttt_haste_minutes_per_death", "0.5", FCVAR_NOTIFY)
+local ttt_haste = CreateConVar("ttt_haste", "1", FCVAR_NOTIFY + FCVAR_ARCHIVE)
+CreateConVar("ttt_haste_starting_minutes", "5", FCVAR_NOTIFY + FCVAR_ARCHIVE)
+CreateConVar("ttt_haste_minutes_per_death", "0.5", FCVAR_NOTIFY + FCVAR_ARCHIVE)
 
 -- Player Spawning
-CreateConVar("ttt_spawn_wave_interval", "0", FCVAR_NOTIFY)
+CreateConVar("ttt_spawn_wave_interval", "0", FCVAR_NOTIFY + FCVAR_ARCHIVE)
 
-CreateConVar("ttt_traitor_pct", "0.23", FCVAR_NOTIFY)
-CreateConVar("ttt_traitor_max", "4", FCVAR_NOTIFY)
+CreateConVar("ttt_traitor_pct", "0.23", FCVAR_NOTIFY + FCVAR_ARCHIVE)
+CreateConVar("ttt_traitor_max", "4", FCVAR_NOTIFY + FCVAR_ARCHIVE)
 
-CreateConVar("ttt_detective_pct", "0.10", FCVAR_NOTIFY)
-CreateConVar("ttt_detective_max", "1", FCVAR_NOTIFY)
-CreateConVar("ttt_detective_min_players", "9", FCVAR_NOTIFY)
-CreateConVar("ttt_detective_karma_min", "600", FCVAR_NOTIFY)
+CreateConVar("ttt_detective_pct", "0.10", FCVAR_NOTIFY + FCVAR_ARCHIVE)
+CreateConVar("ttt_detective_max", "1", FCVAR_NOTIFY + FCVAR_ARCHIVE)
+CreateConVar("ttt_detective_min_players", "9", FCVAR_NOTIFY + FCVAR_ARCHIVE)
+CreateConVar("ttt_detective_karma_min", "600", FCVAR_NOTIFY + FCVAR_ARCHIVE)
 
-CreateConVar("ttt_mercenary_enabled", "1", FCVAR_NOTIFY)
-CreateConVar("ttt_hypnotist_enabled", "0", FCVAR_NOTIFY)
-CreateConVar("ttt_glitch_enabled", "1", FCVAR_NOTIFY)
-CreateConVar("ttt_jester_enabled", "1", FCVAR_NOTIFY)
-CreateConVar("ttt_phantom_enabled", "0", FCVAR_NOTIFY)
-CreateConVar("ttt_zombie_enabled", "1", FCVAR_NOTIFY)
-CreateConVar("ttt_vampire_enabled", "1", FCVAR_NOTIFY)
-CreateConVar("ttt_swapper_enabled", "1", FCVAR_NOTIFY)
-CreateConVar("ttt_assassin_enabled", "1", FCVAR_NOTIFY)
-CreateConVar("ttt_killer_enabled", "0", FCVAR_NOTIFY)
+CreateConVar("ttt_mercenary_enabled", "1", FCVAR_NOTIFY + FCVAR_ARCHIVE)
+CreateConVar("ttt_hypnotist_enabled", "0", FCVAR_NOTIFY + FCVAR_ARCHIVE)
+CreateConVar("ttt_glitch_enabled", "1", FCVAR_NOTIFY + FCVAR_ARCHIVE)
+CreateConVar("ttt_jester_enabled", "1", FCVAR_NOTIFY + FCVAR_ARCHIVE)
+CreateConVar("ttt_phantom_enabled", "0", FCVAR_NOTIFY + FCVAR_ARCHIVE)
+CreateConVar("ttt_zombie_enabled", "1", FCVAR_NOTIFY + FCVAR_ARCHIVE)
+CreateConVar("ttt_vampire_enabled", "1", FCVAR_NOTIFY + FCVAR_ARCHIVE)
+CreateConVar("ttt_swapper_enabled", "1", FCVAR_NOTIFY + FCVAR_ARCHIVE)
+CreateConVar("ttt_assassin_enabled", "1", FCVAR_NOTIFY + FCVAR_ARCHIVE)
+CreateConVar("ttt_killer_enabled", "0", FCVAR_NOTIFY + FCVAR_ARCHIVE)
 
-CreateConVar("ttt_zombie_chance", "0.05", FCVAR_NOTIFY)
-CreateConVar("ttt_hypnotist_chance", "1", FCVAR_NOTIFY)
-CreateConVar("ttt_vampire_chance", "0.1", FCVAR_NOTIFY)
-CreateConVar("ttt_assassin_chance", "0.1", FCVAR_NOTIFY)
-CreateConVar("ttt_glitch_chance", "0.25", FCVAR_NOTIFY)
-CreateConVar("ttt_phantom_chance", "0", FCVAR_NOTIFY)
-CreateConVar("ttt_mercenary_chance", "0.25", FCVAR_NOTIFY)
-CreateConVar("ttt_jester_chance", "0.05", FCVAR_NOTIFY)
-CreateConVar("ttt_swapper_chance", "0.05", FCVAR_NOTIFY)
-CreateConVar("ttt_killer_chance", "1", FCVAR_NOTIFY)
+CreateConVar("ttt_zombie_chance", "0.05", FCVAR_NOTIFY + FCVAR_ARCHIVE)
+CreateConVar("ttt_hypnotist_chance", "1", FCVAR_NOTIFY + FCVAR_ARCHIVE)
+CreateConVar("ttt_vampire_chance", "0.1", FCVAR_NOTIFY + FCVAR_ARCHIVE)
+CreateConVar("ttt_assassin_chance", "0.1", FCVAR_NOTIFY + FCVAR_ARCHIVE)
+CreateConVar("ttt_glitch_chance", "0.25", FCVAR_NOTIFY + FCVAR_ARCHIVE)
+CreateConVar("ttt_phantom_chance", "0", FCVAR_NOTIFY + FCVAR_ARCHIVE)
+CreateConVar("ttt_mercenary_chance", "0.25", FCVAR_NOTIFY + FCVAR_ARCHIVE)
+CreateConVar("ttt_jester_chance", "0.05", FCVAR_NOTIFY + FCVAR_ARCHIVE)
+CreateConVar("ttt_swapper_chance", "0.05", FCVAR_NOTIFY + FCVAR_ARCHIVE)
+CreateConVar("ttt_killer_chance", "1", FCVAR_NOTIFY + FCVAR_ARCHIVE)
 
-CreateConVar("ttt_mercenary_required_innos", "6", FCVAR_NOTIFY)
-CreateConVar("ttt_hypnotist_required_traitors", "2", FCVAR_NOTIFY)
-CreateConVar("ttt_glitch_required_innos", "6", FCVAR_NOTIFY)
-CreateConVar("ttt_jester_required_innos", "4", FCVAR_NOTIFY)
-CreateConVar("ttt_phantom_required_innos", "2", FCVAR_NOTIFY)
-CreateConVar("ttt_vampire_required_traitors", "2", FCVAR_NOTIFY)
-CreateConVar("ttt_swapper_required_innos", "4", FCVAR_NOTIFY)
-CreateConVar("ttt_assassin_required_traitors", "2", FCVAR_NOTIFY)
-CreateConVar("ttt_killer_required_innos", "6", FCVAR_NOTIFY)
+CreateConVar("ttt_mercenary_required_innos", "6", FCVAR_NOTIFY + FCVAR_ARCHIVE)
+CreateConVar("ttt_hypnotist_required_traitors", "2", FCVAR_NOTIFY + FCVAR_ARCHIVE)
+CreateConVar("ttt_glitch_required_innos", "6", FCVAR_NOTIFY + FCVAR_ARCHIVE)
+CreateConVar("ttt_jester_required_innos", "4", FCVAR_NOTIFY + FCVAR_ARCHIVE)
+CreateConVar("ttt_phantom_required_innos", "2", FCVAR_NOTIFY + FCVAR_ARCHIVE)
+CreateConVar("ttt_vampire_required_traitors", "2", FCVAR_NOTIFY + FCVAR_ARCHIVE)
+CreateConVar("ttt_swapper_required_innos", "4", FCVAR_NOTIFY + FCVAR_ARCHIVE)
+CreateConVar("ttt_assassin_required_traitors", "2", FCVAR_NOTIFY + FCVAR_ARCHIVE)
+CreateConVar("ttt_killer_required_innos", "6", FCVAR_NOTIFY + FCVAR_ARCHIVE)
 
-CreateConVar("ttt_zombie_pct", "0.2", FCVAR_NOTIFY)
+CreateConVar("ttt_zombie_pct", "0.2", FCVAR_NOTIFY + FCVAR_ARCHIVE)
 
 -- Traitor credits
-CreateConVar("ttt_credits_starting", "2", FCVAR_NOTIFY)
-CreateConVar("ttt_assassin_credits_starting", "2", FCVAR_NOTIFY)
-CreateConVar("ttt_hypnotist_credits_starting", "2", FCVAR_NOTIFY)
-CreateConVar("ttt_vampire_credits_starting", "2", FCVAR_NOTIFY)
-CreateConVar("ttt_zombie_credits_starting", "2", FCVAR_NOTIFY)
+CreateConVar("ttt_credits_starting", "2", FCVAR_NOTIFY + FCVAR_ARCHIVE)
+CreateConVar("ttt_assassin_credits_starting", "2", FCVAR_NOTIFY + FCVAR_ARCHIVE)
+CreateConVar("ttt_hypnotist_credits_starting", "2", FCVAR_NOTIFY + FCVAR_ARCHIVE)
+CreateConVar("ttt_vampire_credits_starting", "2", FCVAR_NOTIFY + FCVAR_ARCHIVE)
+CreateConVar("ttt_zombie_credits_starting", "2", FCVAR_NOTIFY + FCVAR_ARCHIVE)
 
-CreateConVar("ttt_credits_award_pct", "0.35", FCVAR_NOTIFY)
-CreateConVar("ttt_credits_award_size", "1", FCVAR_NOTIFY)
-CreateConVar("ttt_credits_award_repeat", "1", FCVAR_NOTIFY)
-CreateConVar("ttt_credits_detectivekill", "1", FCVAR_NOTIFY)
+CreateConVar("ttt_credits_award_pct", "0.35", FCVAR_NOTIFY + FCVAR_ARCHIVE)
+CreateConVar("ttt_credits_award_size", "1", FCVAR_NOTIFY + FCVAR_ARCHIVE)
+CreateConVar("ttt_credits_award_repeat", "1", FCVAR_NOTIFY + FCVAR_ARCHIVE)
+CreateConVar("ttt_credits_detectivekill", "1", FCVAR_NOTIFY + FCVAR_ARCHIVE)
 
-CreateConVar("ttt_credits_alonebonus", "1", FCVAR_NOTIFY)
+CreateConVar("ttt_credits_alonebonus", "1", FCVAR_NOTIFY + FCVAR_ARCHIVE)
 
 -- Detective credits
-CreateConVar("ttt_det_credits_starting", "1", FCVAR_NOTIFY)
-CreateConVar("ttt_det_credits_traitorkill", "0", FCVAR_NOTIFY)
-CreateConVar("ttt_det_credits_traitordead", "1", FCVAR_NOTIFY)
+CreateConVar("ttt_det_credits_starting", "1", FCVAR_NOTIFY + FCVAR_ARCHIVE)
+CreateConVar("ttt_det_credits_traitorkill", "0", FCVAR_NOTIFY + FCVAR_ARCHIVE)
+CreateConVar("ttt_det_credits_traitordead", "1", FCVAR_NOTIFY + FCVAR_ARCHIVE)
 
 -- Independent credits
-CreateConVar("ttt_mer_credits_starting", "2", FCVAR_NOTIFY)
-CreateConVar("ttt_kil_credits_starting", "2", FCVAR_NOTIFY)
+CreateConVar("ttt_mer_credits_starting", "2", FCVAR_NOTIFY + FCVAR_ARCHIVE)
+CreateConVar("ttt_kil_credits_starting", "2", FCVAR_NOTIFY + FCVAR_ARCHIVE)
 
-CreateConVar("ttt_detective_search_only", "0", FCVAR_NOTIFY + FCVAR_REPLICATED)
+CreateConVar("ttt_detective_search_only", "0", FCVAR_NOTIFY + FCVAR_REPLICATED + FCVAR_ARCHIVE)
 
 -- Other
-CreateConVar("ttt_use_weapon_spawn_scripts", "1", FCVAR_NOTIFY)
-CreateConVar("ttt_weapon_spawn_count", "0", FCVAR_NOTIFY)
+CreateConVar("ttt_use_weapon_spawn_scripts", "1", FCVAR_NOTIFY + FCVAR_ARCHIVE)
+CreateConVar("ttt_weapon_spawn_count", "0", FCVAR_NOTIFY + FCVAR_ARCHIVE)
 
-CreateConVar("ttt_round_limit", "6", FCVAR_NOTIFY + FCVAR_REPLICATED)
-CreateConVar("ttt_time_limit_minutes", "75", FCVAR_NOTIFY + FCVAR_REPLICATED)
+CreateConVar("ttt_round_limit", "6", FCVAR_NOTIFY + FCVAR_REPLICATED + FCVAR_ARCHIVE)
+CreateConVar("ttt_time_limit_minutes", "75", FCVAR_NOTIFY + FCVAR_REPLICATED + FCVAR_ARCHIVE)
 
-CreateConVar("ttt_idle_limit", "180", FCVAR_NOTIFY)
+CreateConVar("ttt_idle_limit", "180", FCVAR_NOTIFY + FCVAR_ARCHIVE)
 
-CreateConVar("ttt_voice_drain", "0", FCVAR_NOTIFY)
-CreateConVar("ttt_voice_drain_normal", "0.2", FCVAR_NOTIFY)
-CreateConVar("ttt_voice_drain_admin", "0.05", FCVAR_NOTIFY)
-CreateConVar("ttt_voice_drain_recharge", "0.05", FCVAR_NOTIFY)
+CreateConVar("ttt_voice_drain", "0", FCVAR_NOTIFY + FCVAR_ARCHIVE)
+CreateConVar("ttt_voice_drain_normal", "0.2", FCVAR_NOTIFY + FCVAR_ARCHIVE)
+CreateConVar("ttt_voice_drain_admin", "0.05", FCVAR_NOTIFY + FCVAR_ARCHIVE)
+CreateConVar("ttt_voice_drain_recharge", "0.05", FCVAR_NOTIFY + FCVAR_ARCHIVE)
 
-CreateConVar("ttt_namechange_kick", "1", FCVAR_NOTIFY)
-CreateConVar("ttt_namechange_bantime", "10")
+CreateConVar("ttt_namechange_kick", "1", FCVAR_NOTIFY + FCVAR_ARCHIVE)
+CreateConVar("ttt_namechange_bantime", "10", FCVAR_ARCHIVE)
 
-CreateConVar("ttt_karma_beta", "0", FCVAR_REPLICATED)
+CreateConVar("ttt_karma_beta", "0", FCVAR_REPLICATED + FCVAR_ARCHIVE)
 
-CreateConVar("ttt_independent_warning", "0", FCVAR_NOTIFY)
+CreateConVar("ttt_independent_warning", "0", FCVAR_NOTIFY + FCVAR_ARCHIVE)
 
 -- Drinking game punishments
 CreateConVar("ttt_drinking_death", "drink")
@@ -1520,7 +1520,6 @@ function SelectRoles()
 			hasPhantom = true
 		end
 	end
-
 	if GetConVar("ttt_glitch_enabled"):GetInt() == 1 and #choices >= GetConVar("ttt_glitch_required_innos"):GetInt() and math.random() <= glitch_chance and not hasSpecial and not hasGlitch and ts > 1 then
 		local pick = math.random(1, #choices)
 		local pply = choices[pick]

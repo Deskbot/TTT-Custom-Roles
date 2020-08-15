@@ -10,6 +10,7 @@ Adds a bunch of new roles to the Garry's Mod TTT game mode.
 - The number of starting credits for all traitor roles and zombies are independently configurable with these commands: `ttt_credits_starting`, `ttt_assassin_credits_starting`, `ttt_hypnotist_credits_starting`, `ttt_vampire_credits_starting`, `ttt_zombie_credits_starting`.
 - Fixes bugs that cause the chance of many roles to be wrong. They should now operate how you would expect.
 - All players are notified in the chat when config settings are changed that relate to roles and game rules. Notably this includes role likelihoods and conditions for roles to be enabled.
+- Gameplay configuration is saved between map reloads and play sessions.
 - Config defaults have been altered. Notably `ttt_detective_search_only` defaults to `0`.
 - Fixes a bug that causes detectives to not spawn with claws when turned into a Zombie.
 - Adds option `ttt_independent_warning` (Default: 1). At the start of the round, if there is a Jester, Swapper, or Killer, all players are warned that there is an "independent player".

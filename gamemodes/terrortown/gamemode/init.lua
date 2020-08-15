@@ -756,6 +756,7 @@ local function PrintRoleSummary(
 	vampireChance,
 	hypnotistChance,
 	zombieChance,
+	zombieCount,
 	glitchChance,
 	mercenaryChance,
 	phantomChance,
@@ -763,13 +764,7 @@ local function PrintRoleSummary(
 	jesterChance,
 	swapperChance
 )
-	-- player count
 	local message = Format("Players: %d, Traitors: %d\n", playerCount, traitorCount)
-
-	-- zombie%
-	if zombieChance > 0 then
-		message = message .. Format("Zombie Round: %d%%\n", zombieChance * 100)
-	end
 
 	-- detective count
 	if detectiveCount > 0 then
@@ -819,6 +814,11 @@ local function PrintRoleSummary(
 	end
 	if #independents > 0 then
 		message = message .. table.concat(independents, ", ") .. "\n"
+	end
+
+	-- zombie%
+	if zombieChance > 0 then
+		message = message .. Format("Zombies: %d%%, initial amount: %d", zombieChance * 100, zombieCount)
 	end
 
 	-- tell all players
@@ -1601,6 +1601,7 @@ function SelectRoles()
 		vampireEnabled and real_vampire_chance or 0,
 		hypnotistEnabled and real_hypnotist_chance or 0,
 		zombieEnabled and zombie_chance or 0,
+		zombie_count,
 		glitchEnabled and glitch_chance or 0,
 		mercenaryEnabled and mercenary_chance or 0,
 		phantomEnabled and phantom_chance or 0,

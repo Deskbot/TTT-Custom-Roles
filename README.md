@@ -11,6 +11,7 @@ Adds a bunch of new roles to the Garry's Mod TTT game mode.
 - Fixes bugs that cause the chance of many roles to be wrong. They should now operate how you would expect.
 - All players are notified in the chat when config settings are changed that relate to roles and game rules. Notably this includes role likelihoods and conditions for roles to be enabled.
 - Gameplay configuration is saved between map reloads and play sessions.
+- Prevents a player's role in the previous round from affecting the likelihood of what role they get in the next round.
 - Config defaults have been altered. Notably `ttt_detective_search_only` defaults to `0`.
 - Fixes a bug that causes detectives to not spawn with claws when turned into a Zombie.
 - Adds option `ttt_independent_warning` (Default: 1). At the start of the round, if there is a Jester, Swapper, or Killer, all players are warned that there is an "independent player".
@@ -18,6 +19,7 @@ Adds a bunch of new roles to the Garry's Mod TTT game mode.
 - Fixes a bug that causes zombies to not lose their claws when forced into a different role.
 - Removes `ttt_sherlock_mode` and treats the game as though it is always true. i.e. players can inspect corpses to find the player's role. This is completely separate from `ttt_detective_search_only`, which still exists.
 - Removes `ttt_limit_spectator_voice` and treats it as always true. i.e. spectators can't use in-game voice.
+- Removes a special case for a certain random Steam user in role selection.
 
 ### Special Thanks:
 

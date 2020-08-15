@@ -1342,9 +1342,7 @@ function SelectRoles()
 			-- the player we consider
 			local pply = choices[pick]
 
-			-- make this guy traitor if he was not a traitor last time, or if he makes
-			-- a roll
-			if IsValid(pply) and (not (table.HasValue(prev_roles[ROLE_TRAITOR], pply) or table.HasValue(prev_roles[ROLE_ZOMBIE], pply) or table.HasValue(prev_roles[ROLE_HYPNOTIST], pply) or table.HasValue(prev_roles[ROLE_VAMPIRE], pply) or table.HasValue(prev_roles[ROLE_ASSASSIN], pply)) or (math.random(1, 3) == 2)) and pply:SteamID() ~= "STEAM_0:1:22691201" then
+			if IsValid(pply) then
 				print(pply:Nick() .. " (" .. pply:SteamID() .. ") - Zombie")
 				pply:SetRole(ROLE_ZOMBIE)
 				table.remove(choices, pick)
@@ -1359,8 +1357,7 @@ function SelectRoles()
 			-- the player we consider
 			local pply = choices[pick]
 
-			-- make this guy traitor if he was not a traitor last time, or if he makes a roll
-			if IsValid(pply) and ((not (table.HasValue(prev_roles[ROLE_TRAITOR], pply) or table.HasValue(prev_roles[ROLE_ZOMBIE], pply) or table.HasValue(prev_roles[ROLE_HYPNOTIST], pply) or table.HasValue(prev_roles[ROLE_VAMPIRE], pply) or table.HasValue(prev_roles[ROLE_ASSASSIN], pply))) or (math.random(1, 3) == 2)) and pply:SteamID() ~= "STEAM_0:1:22691201" then
+			if IsValid(pply) then
 				if not hasSpecial then
 					-- pick a number between 0 and 1
 					local rand = math.random()
@@ -1431,10 +1428,7 @@ function SelectRoles()
 		local pply = choices[pick]
 
 		-- we are less likely to be a detective unless we were innocent last round
-		if (IsValid(pply) and
-				((pply:GetBaseKarma() > min_karma and
-						table.HasValue(prev_roles[ROLE_INNOCENT], pply)) or
-						math.random(1, 3) == 2)) then
+		if IsValid(pply) and (pply:GetBaseKarma() > min_karma) then
 
 			-- if a player has specified he does not want to be detective, we skip
 			-- him here (he might still get it if we don't have enough

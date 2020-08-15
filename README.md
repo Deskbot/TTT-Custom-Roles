@@ -5,6 +5,7 @@ Adds a bunch of new roles to the Garry's Mod TTT game mode.
 
 ## Differences to the [original by NoxxFlame](https://github.com/NoxxFlame/TTT-Custom-Roles).
 
+* Gameplay configuration is saved between map reloads and play sessions.
 
 ### Special Thanks:
 

@@ -13,6 +13,7 @@ Adds a bunch of new roles to the Garry's Mod TTT game mode.
 - A summary of the role settings is printed into the chat at the start of each round.
 - Gameplay configuration is saved between map reloads and play sessions.
 - Prevents a player's role in the previous round from affecting the likelihood of what role they get in the next round.
+- Improves the randomness by assigning players their role in a random order.
 - Config defaults have been altered. Notably `ttt_detective_search_only` defaults to `0`.
 - Fixes a bug that causes detectives to not spawn with claws when turned into a Zombie.
 - Adds option `ttt_independent_warning` (Default: 1). At the start of the round, if there is a Jester, Swapper, or Killer, all players are warned that there is an "independent player".

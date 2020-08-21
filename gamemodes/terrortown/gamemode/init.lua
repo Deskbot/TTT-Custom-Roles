@@ -347,7 +347,7 @@ end
 local function EnoughPlayers()
 	local ready = 0
 	-- only count truly available players, ie. no forced specs
-	for _, ply in pairs(player.GetAll()) do
+	for _, ply in pairs(table.Shuffle(player.GetAll())) do
 		if IsValid(ply) and ply:ShouldSpawn() then
 			ready = ready + 1
 		end
